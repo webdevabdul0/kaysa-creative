@@ -141,7 +141,8 @@ a { color: inherit; }
   transition: color 0.15s, background 0.15s;
   letter-spacing: -0.01em;
 }
-.nav-mobile-link:hover, .nav-mobile-link.active { color: #fff; background: rgba(142,134,242,0.1); }
+.nav-mobile-link:hover { color: #fff; }
+.nav-mobile-link.active { color: #8E86F2; background: none; }
 
 @media (max-width: 768px) {
   .nav-links-desktop { display: none !important; }
