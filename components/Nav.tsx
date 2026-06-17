@@ -68,7 +68,7 @@ export default function Nav() {
           <div className="nav-links-desktop" style={{ width: 1, height: 20, background: 'rgba(142,134,242,0.18)', flex: 'none', alignItems: 'unset' }} />
 
           {/* Links — desktop */}
-          <div className="nav-links-desktop" style={{ gap: 2, flex: 1 }}>
+          <div className="nav-links-desktop" style={{ gap: 2, flex: 1, justifyContent: 'center' }}>
             {links.map(({ href, label }) => (
               <Link key={href} href={href} style={{ textDecoration: 'none' }}>
                 <span className="nav-btn" style={{
