@@ -370,7 +370,7 @@ export default function HomePage() {
             <h2 style={{ fontFamily: "'Sora',sans-serif", fontWeight: 400, fontSize: 'clamp(28px,3.8vw,48px)', lineHeight: 1.07, letterSpacing: '-0.02em', margin: '0 0 40px', color: '#F1EFFA' }}>What Success Looks Like</h2>
           </FadeUp>
           <FadeIn delay={0.2}>
-            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(6,1fr)', gridAutoRows: 200, gap: 16 }}>
+            <div className="bento-6col" style={{ gridAutoRows: 200 }}>
               <motion.div whileHover={{ scale: 1.012 }} transition={{ type: 'spring', stiffness: 200 }} style={{ gridColumn: 'span 4', gridRow: 'span 2', position: 'relative', overflow: 'hidden', borderRadius: 24, border: '1px solid rgba(142,134,242,0.18)' }}>
                 <div style={{ position: 'absolute', inset: 0, backgroundImage: 'url(/shotss.png)', backgroundSize: 'cover', backgroundPosition: 'center' }} />
                 <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to top, rgba(7,7,12,0.96) 0%, rgba(7,7,12,0.7) 40%, rgba(7,7,12,0.3) 70%, rgba(7,7,12,0.15) 100%)' }} />
@@ -406,7 +406,7 @@ export default function HomePage() {
             <h2 style={{ fontFamily: "'Sora',sans-serif", fontWeight: 400, fontSize: 'clamp(28px,3.8vw,48px)', lineHeight: 1.07, letterSpacing: '-0.02em', margin: '0 0 40px', color: '#F1EFFA' }}>How we work</h2>
           </FadeUp>
           <FadeIn delay={0.15}>
-            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(6,1fr)', gridAutoRows: 180, gap: 16 }}>
+            <div className="bento-6col" style={{ gridAutoRows: 180 }}>
 
               {/* STEP 01 — wide */}
               <motion.div whileHover={{ y: -4 }} transition={{ type: 'spring', stiffness: 260 }} style={{ gridColumn: 'span 4', gridRow: 'span 2', position: 'relative', overflow: 'hidden', padding: 36, borderRadius: 24, border: '1px solid rgba(142,134,242,0.16)', background: 'linear-gradient(135deg,rgba(107,99,216,0.14),rgba(30,26,64,0.2))', display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>

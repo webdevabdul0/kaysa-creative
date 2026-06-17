@@ -105,3 +105,55 @@ a { color: inherit; }
 .marquee-l { animation: mqL 38s linear infinite; }
 .marquee-r { animation: mqR 50s linear infinite; }
 .pulse { animation: kpulse 2.4s ease-in-out infinite; }
+
+/* ── Responsive bento grids ── */
+.bento-6col {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 16px;
+}
+.bento-6col > * { min-height: 200px; }
+
+/* mobile nav */
+.nav-links-desktop { display: flex; align-items: center; }
+.nav-hamburger { display: none; }
+.nav-mobile-menu {
+  display: none;
+  position: fixed;
+  inset: 0;
+  z-index: 99;
+  background: rgba(7,7,12,0.97);
+  backdrop-filter: blur(20px);
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+.nav-mobile-menu.open { display: flex; }
+.nav-mobile-link {
+  font-family: 'Sora', sans-serif;
+  font-size: 28px;
+  font-weight: 300;
+  color: #C9C6DD;
+  text-decoration: none;
+  padding: 14px 32px;
+  border-radius: 14px;
+  transition: color 0.15s, background 0.15s;
+  letter-spacing: -0.01em;
+}
+.nav-mobile-link:hover, .nav-mobile-link.active { color: #fff; background: rgba(142,134,242,0.1); }
+
+@media (max-width: 768px) {
+  .nav-links-desktop { display: none !important; }
+  .nav-hamburger { display: flex !important; }
+
+  /* Featured project bento — stack to single column */
+  .bento-6col { grid-template-columns: 1fr !important; grid-auto-rows: auto !important; }
+  .bento-6col > * {
+    grid-column: span 1 !important;
+    grid-row: span 1 !important;
+    min-height: 220px;
+  }
+  /* Step 01 tall card gets more room for text */
+  .bento-6col > *:first-child { min-height: 280px; }
+}
