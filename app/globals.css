@@ -144,9 +144,21 @@ a { color: inherit; }
 .nav-mobile-link:hover { color: #fff; }
 .nav-mobile-link.active { color: #8E86F2; background: none; }
 
+/* footer */
+.footer-grid {
+  display: grid;
+  grid-template-columns: 1.6fr 1fr 1fr 1fr;
+  gap: clamp(28px, 5vw, 40px);
+}
+.footer-brand { grid-column: auto; }
+
 @media (max-width: 768px) {
   .nav-links-desktop { display: none !important; }
   .nav-hamburger { display: flex !important; }
+
+  /* footer responsive */
+  .footer-grid { grid-template-columns: 1fr 1fr !important; }
+  .footer-brand { grid-column: 1 / -1 !important; }
 
   /* Featured project bento — stack to single column */
   .bento-6col { grid-template-columns: 1fr !important; grid-auto-rows: auto !important; }

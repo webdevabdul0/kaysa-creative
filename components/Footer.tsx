@@ -4,12 +4,11 @@ import Image from 'next/image';
 export default function Footer() {
   return (
     <footer style={{ borderTop: '1px solid rgba(142,134,242,0.10)', background: 'rgba(7,7,12,0.5)', marginTop: 20 }}>
-      <div style={{
+      <div className="footer-grid" style={{
         maxWidth: 1240, margin: '0 auto',
         padding: 'clamp(50px,7vh,80px) clamp(20px,5vw,48px) 40px',
-        display: 'grid', gridTemplateColumns: '1.6fr 1fr 1fr 1fr', gap: 40,
       }}>
-        <div style={{ minWidth: 220 }}>
+        <div className="footer-brand">
           <div style={{ display: 'flex', alignItems: 'center', gap: 12, marginBottom: 18 }}>
             <Image src="/assets/kaysa-logo.webp" alt="Kaysa" width={34} height={34}
               style={{ filter: 'drop-shadow(0 0 12px rgba(107,99,216,0.5))' }} />
