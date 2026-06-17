@@ -1,0 +1,128 @@
+'use client';
+import Link from 'next/link';
+import { motion } from 'framer-motion';
+import Nav from '@/components/Nav';
+import Footer from '@/components/Footer';
+import { FadeUp, StaggerGroup, StaggerItem } from '@/components/Animate';
+
+const SectionLabel = ({ text }: { text: string }) => (
+  <div style={{ display: 'flex', alignItems: 'center', gap: 11, marginBottom: 20 }}>
+    <span style={{ width: 7, height: 7, borderRadius: 2, background: '#8E86F2', boxShadow: '0 0 12px #6B63D8' }} />
+    <span style={{ fontFamily: "'JetBrains Mono',monospace", fontSize: 12, letterSpacing: '0.24em', textTransform: 'uppercase' as const, color: '#8E86F2' }}>{text}</span>
+  </div>
+);
+
+export default function AboutPage() {
+  return (
+    <>
+      <Nav />
+      <main>
+        {/* HERO */}
+        <section style={{ maxWidth: 1240, margin: '0 auto', padding: 'clamp(80px,12vh,140px) clamp(20px,5vw,48px) clamp(40px,6vh,70px)', textAlign: 'center' }}>
+          <motion.div
+            initial={{ opacity: 0, scale: 0.9 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.6 }}
+            style={{ display: 'inline-flex', alignItems: 'center', gap: 10, padding: '8px 16px', borderRadius: 100, border: '1px solid rgba(142,134,242,0.22)', background: 'rgba(142,134,242,0.06)', marginBottom: 30 }}
+          >
+            <span style={{ width: 7, height: 7, borderRadius: '50%', background: '#8E86F2', boxShadow: '0 0 12px #6B63D8' }} />
+            <span style={{ fontFamily: "'JetBrains Mono',monospace", fontSize: 11.5, letterSpacing: '0.26em', textTransform: 'uppercase', color: '#B7B2E0' }}>Unlock a New Partnership</span>
+          </motion.div>
+          <motion.h1
+            initial={{ opacity: 0, y: 50 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.15, ease: [0.25, 0.1, 0.25, 1] }}
+            style={{ fontFamily: "'Sora',sans-serif", fontWeight: 800, fontSize: 'clamp(40px,6.4vw,84px)', lineHeight: 1.02, letterSpacing: '-0.025em', margin: 0, color: '#F4F2FC' }}
+          >
+            About{' '}
+            <span style={{ background: 'linear-gradient(120deg,#A99FFF,#6B63D8)', WebkitBackgroundClip: 'text', backgroundClip: 'text', color: 'transparent' }}>Kaysa</span>
+          </motion.h1>
+        </section>
+
+        {/* APPROACH */}
+        <section style={{ maxWidth: 1240, margin: '0 auto', padding: 'clamp(40px,7vh,90px) clamp(20px,5vw,48px) 0' }}>
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit,minmax(300px,1fr))', gap: 'clamp(32px,5vw,64px)', alignItems: 'start' }}>
+            <FadeUp>
+              <SectionLabel text="Our Approach" />
+              <h2 style={{ fontFamily: "'Sora',sans-serif", fontWeight: 700, fontSize: 'clamp(26px,3.2vw,42px)', lineHeight: 1.1, letterSpacing: '-0.02em', margin: 0, color: '#F1EFFA' }}>Kaysa Creative Marketing — Where Trust Meets Influence</h2>
+            </FadeUp>
+            <FadeUp delay={0.15}>
+              <p style={{ fontFamily: "'DM Sans',sans-serif", fontSize: 16, lineHeight: 1.72, color: '#A6A2C2', margin: '0 0 18px' }}>In a world that&apos;s evolving at lightning speed, the connection between brands, technology, and communities is being redefined. Crypto is no longer the future — it&apos;s the present. But with growth comes a major challenge: trust.</p>
+              <p style={{ fontFamily: "'DM Sans',sans-serif", fontSize: 16, lineHeight: 1.72, color: '#A6A2C2', margin: '0 0 18px' }}>The market is flooded with new tokens, NFTs, and Web3 projects. Among the truly innovative ideas, there are also those that fail to deliver, harming the credibility of the entire industry.</p>
+              <p style={{ fontFamily: "'DM Sans',sans-serif", fontSize: 16, lineHeight: 1.72, color: '#D5D1EA', margin: 0 }}>Kaysa Creative Marketing was created to solve that problem. We are the bridge between trust and exposure — connecting verified crypto projects with carefully selected influencers.</p>
+            </FadeUp>
+          </div>
+        </section>
+
+        {/* MISSION & VISION */}
+        <section style={{ maxWidth: 1240, margin: '0 auto', padding: 'clamp(60px,9vh,110px) clamp(20px,5vw,48px) 0' }}>
+          <StaggerGroup style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit,minmax(320px,1fr))', gap: 20 }}>
+            <StaggerItem>
+              <motion.div
+                whileHover={{ y: -4 }}
+                style={{ padding: 38, borderRadius: 24, border: '1px solid rgba(142,134,242,0.16)', background: 'linear-gradient(180deg,rgba(255,255,255,0.04),rgba(255,255,255,0.012))', height: '100%' }}
+              >
+                <h3 style={{ fontFamily: "'Sora',sans-serif", fontWeight: 700, fontSize: 26, color: '#F1EFFA', margin: '0 0 20px' }}>Mission</h3>
+                <p style={{ fontFamily: "'DM Sans',sans-serif", fontSize: 15, lineHeight: 1.68, color: '#A6A2C2', margin: '0 0 16px' }}>Kaysa specializes in crypto marketing with one clear goal: to connect verified projects with influential creators who make a genuine impact.</p>
+                <p style={{ fontFamily: "'DM Sans',sans-serif", fontSize: 15, lineHeight: 1.68, color: '#A6A2C2', margin: '0 0 16px' }}>Every project we represent undergoes a thorough vetting process — from tokenomics to team background — before being introduced to our influencer network.</p>
+                <p style={{ fontFamily: "'DM Sans',sans-serif", fontSize: 15, lineHeight: 1.68, color: '#A6A2C2', margin: 0 }}>We apply the same standards to our influencers. Only those who truly understand their audience, communicate authentically, and share our values are invited to join.</p>
+              </motion.div>
+            </StaggerItem>
+            <StaggerItem>
+              <motion.div
+                whileHover={{ y: -4 }}
+                style={{ padding: 38, borderRadius: 24, border: '1px solid rgba(142,134,242,0.24)', background: 'linear-gradient(160deg,rgba(107,99,216,0.18),rgba(30,26,64,0.3))', display: 'flex', flexDirection: 'column', justifyContent: 'center', height: '100%' }}
+              >
+                <h3 style={{ fontFamily: "'Sora',sans-serif", fontWeight: 700, fontSize: 26, color: '#F4F2FC', margin: '0 0 20px' }}>Vision</h3>
+                <p style={{ fontFamily: "'DM Sans',sans-serif", fontSize: 17, lineHeight: 1.7, color: '#D9D5EE', margin: 0 }}>Our vision is to be the trusted global partner for innovation and growth, where strategy meets creativity and every collaboration retains a personal, human touch.</p>
+              </motion.div>
+            </StaggerItem>
+          </StaggerGroup>
+        </section>
+
+        {/* OUR STRENGTH */}
+        <section style={{ maxWidth: 1240, margin: '0 auto', padding: 'clamp(60px,9vh,110px) clamp(20px,5vw,48px) clamp(80px,11vh,120px)' }}>
+          <FadeUp>
+            <h2 style={{ fontFamily: "'Sora',sans-serif", fontWeight: 700, fontSize: 'clamp(28px,3.6vw,46px)', lineHeight: 1.08, letterSpacing: '-0.02em', margin: '0 0 40px', color: '#F1EFFA' }}>Our Strength</h2>
+          </FadeUp>
+          <StaggerGroup style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit,minmax(280px,1fr))', gap: 20 }}>
+            {[
+              { n: '01', title: 'Due Diligence', body: "Every token, NFT, or Web3 project we promote is verified for authenticity, transparency, and long-term potential." },
+              { n: '02', title: 'Selective Partnerships', body: "We only work with influencers who have a proven track record of integrity and engagement." },
+              { n: '03', title: 'Full-Service Marketing', body: "From strategy and content creation to influencer activation and storytelling — we build trust, not just reach." },
+            ].map(({ n, title, body }) => (
+              <StaggerItem key={n}>
+                <motion.div className="card" whileHover={{ y: -6 }} transition={{ type: 'spring', stiffness: 300 }} style={{ padding: 32, borderRadius: 20, height: '100%' }}>
+                  <div style={{ width: 48, height: 48, borderRadius: 13, display: 'flex', alignItems: 'center', justifyContent: 'center', background: 'rgba(107,99,216,0.16)', border: '1px solid rgba(142,134,242,0.28)', marginBottom: 22, fontFamily: "'JetBrains Mono',monospace", color: '#A99FFF', fontSize: 18 }}>{n}</div>
+                  <h3 style={{ fontFamily: "'Sora',sans-serif", fontWeight: 600, fontSize: 20, color: '#F1EFFA', margin: '0 0 12px' }}>{title}</h3>
+                  <p style={{ fontFamily: "'DM Sans',sans-serif", fontSize: 15, lineHeight: 1.62, color: '#A09CBE', margin: 0 }}>{body}</p>
+                </motion.div>
+              </StaggerItem>
+            ))}
+          </StaggerGroup>
+
+          <FadeUp style={{ marginTop: 'clamp(60px,9vh,100px)' }}>
+            <motion.div
+              whileHover={{ scale: 1.01 }}
+              style={{ position: 'relative', overflow: 'hidden', borderRadius: 28, border: '1px solid rgba(142,134,242,0.24)', padding: 'clamp(40px,6vw,64px)', textAlign: 'center', background: 'linear-gradient(135deg,rgba(107,99,216,0.20),rgba(40,34,80,0.30))' }}
+            >
+              <div style={{ position: 'absolute', inset: 0, opacity: 0.5, background: 'radial-gradient(60% 120% at 50% 0%, rgba(169,159,255,0.25), transparent 70%)', pointerEvents: 'none' }} />
+              <h2 style={{ position: 'relative', fontFamily: "'Sora',sans-serif", fontWeight: 700, fontSize: 'clamp(24px,3.4vw,40px)', lineHeight: 1.1, margin: '0 auto 24px', maxWidth: 640, color: '#F4F2FC' }}>Ready to build something credible?</h2>
+              <Link href="/contact">
+                <motion.span
+                  className="btn-primary"
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.97 }}
+                  style={{ position: 'relative', display: 'inline-block', fontSize: 15.5, padding: '15px 34px', borderRadius: 13 }}
+                >
+                  Get in touch →
+                </motion.span>
+              </Link>
+            </motion.div>
+          </FadeUp>
+        </section>
+      </main>
+      <Footer />
+    </>
+  );
+}
