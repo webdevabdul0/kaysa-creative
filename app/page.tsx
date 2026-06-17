@@ -1,13 +1,18 @@
 'use client';
 import Link from 'next/link';
+import Image from 'next/image';
 import { motion } from 'framer-motion';
 import dynamic from 'next/dynamic';
+import { useState, useEffect } from 'react';
 import Nav from '@/components/Nav';
 import Footer from '@/components/Footer';
 import { FadeUp, FadeIn, StaggerGroup, StaggerItem, CountUp } from '@/components/Animate';
 import type { GlobeConfig } from '@/components/ui/globe';
 
-const World = dynamic(() => import('@/components/ui/globe').then((m) => m.World), { ssr: false });
+const World = dynamic(() => import('@/components/ui/globe').then((m) => m.World), {
+  ssr: false,
+  loading: () => <div style={{ width: '100%', height: '100%' }} />,
+});
 
 /* ── Globe config — Kaysa purple palette ── */
 const globeConfig: GlobeConfig = {
@@ -84,37 +89,66 @@ const SectionLabel = ({ text }: { text: string }) => (
 );
 
 export default function HomePage() {
+  const [showGlobe, setShowGlobe] = useState(false);
+  useEffect(() => {
+    const t = setTimeout(() => setShowGlobe(true), 100);
+    return () => clearTimeout(t);
+  }, []);
+
   return (
     <>
       <Nav />
       <main>
 
         {/* ══════════════════════════════════════
-            HERO — text left, globe right
+            HERO — centred text + globe below
         ══════════════════════════════════════ */}
-        <section style={{
-          maxWidth: 1240, margin: '0 auto',
-          padding: 'clamp(60px,10vh,120px) clamp(20px,5vw,48px)',
-          display: 'grid',
-          gridTemplateColumns: '1fr 1fr',
-          gap: 40,
-          alignItems: 'center',
-          minHeight: '88vh',
-        }}>
-          {/* LEFT — copy */}
-          <div>
+        <section style={{ position: 'relative', textAlign: 'center', paddingTop: 'clamp(100px,13vh,140px)', overflow: 'hidden' }}>
+          {/* Subtle curved lines sweeping across the heading */}
+          <svg
+            viewBox="0 0 1400 400"
+            preserveAspectRatio="xMidYMid meet"
+            style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '60%', zIndex: 0, pointerEvents: 'none' }}
+            aria-hidden
+          >
+            <defs>
+              {/* Visible at edges, fades out toward centre */}
+              <linearGradient id="cl" x1="0%" y1="0%" x2="100%" y2="0%">
+                <stop offset="0%" stopColor="#8E86F2" stopOpacity="0.5" />
+                <stop offset="18%" stopColor="#8E86F2" stopOpacity="0.3" />
+                <stop offset="30%" stopColor="#8E86F2" stopOpacity="0" />
+                <stop offset="70%" stopColor="#A99FFF" stopOpacity="0" />
+                <stop offset="82%" stopColor="#A99FFF" stopOpacity="0.3" />
+                <stop offset="100%" stopColor="#A99FFF" stopOpacity="0.5" />
+              </linearGradient>
+              <linearGradient id="cl2" x1="0%" y1="0%" x2="100%" y2="0%">
+                <stop offset="0%" stopColor="#6B63D8" stopOpacity="0.35" />
+                <stop offset="18%" stopColor="#6B63D8" stopOpacity="0.15" />
+                <stop offset="30%" stopColor="#6B63D8" stopOpacity="0" />
+                <stop offset="70%" stopColor="#6B63D8" stopOpacity="0" />
+                <stop offset="82%" stopColor="#6B63D8" stopOpacity="0.15" />
+                <stop offset="100%" stopColor="#6B63D8" stopOpacity="0.35" />
+              </linearGradient>
+            </defs>
+            {/* Curves visible on sides, fade behind text in centre */}
+            <path d="M -100 180 Q 700 120 1500 180" fill="none" stroke="url(#cl)" strokeWidth="1" />
+            <path d="M -100 240 Q 700 170 1500 240" fill="none" stroke="url(#cl)" strokeWidth="0.8" />
+            <path d="M -100 310 Q 700 230 1500 310" fill="none" stroke="url(#cl2)" strokeWidth="0.7" />
+          </svg>
+          {/* TEXT block */}
+          <div style={{ maxWidth: 1100, margin: '0 auto', padding: '0 clamp(20px,5vw,48px)', position: 'relative', zIndex: 2 }}>
             <motion.div
               initial={{ opacity: 0, scale: 0.9 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.55 }}
-              style={{ display: 'inline-flex', alignItems: 'center', gap: 10, padding: '8px 16px', borderRadius: 100, border: '1px solid rgba(142,134,242,0.22)', background: 'rgba(142,134,242,0.06)', marginBottom: 32 }}
+              style={{ display: 'inline-flex', alignItems: 'center', gap: 10, padding: '8px 16px', borderRadius: 100, border: '1px solid rgba(142,134,242,0.22)', background: 'rgba(142,134,242,0.06)', marginBottom: 36 }}
             >
               <span className="pulse" style={{ width: 7, height: 7, borderRadius: '50%', background: '#8E86F2', boxShadow: '0 0 12px #6B63D8' }} />
               <span style={{ fontFamily: "'JetBrains Mono',monospace", fontSize: 11.5, letterSpacing: '0.28em', textTransform: 'uppercase', color: '#B7B2E0' }}>Augmenting Your Reputation</span>
             </motion.div>
 
             <div style={{ overflow: 'hidden' }}>
-              {['We Build', 'Strong Brands', '+ Influencer', 'Partnerships'].map((line, i) => (
+              {['We Build Strong Brands &', 'Influencer Partnerships'].map((line, i) => (
                 <motion.div
                   key={line}
                   initial={{ opacity: 0, y: 64 }}
@@ -124,16 +158,13 @@ export default function HomePage() {
                   <h1 style={{
                     fontFamily: "'Sora',sans-serif",
                     fontWeight: i === 1 ? 400 : 300,
-                    fontSize: 'clamp(34px,4.2vw,62px)',
+                    fontSize: 'clamp(32px,4.4vw,68px)',
+                    whiteSpace: 'nowrap',
                     lineHeight: 1.08,
-                    letterSpacing: '-0.025em',
+                    letterSpacing: '-0.03em',
                     margin: 0,
-                    color: i === 1
-                      ? 'transparent'
-                      : '#F4F2FC',
-                    background: i === 1
-                      ? 'linear-gradient(120deg,#A99FFF,#6B63D8)'
-                      : undefined,
+                    color: i === 1 ? 'transparent' : '#F4F2FC',
+                    background: i === 1 ? 'linear-gradient(120deg,#A99FFF,#6B63D8)' : undefined,
                     WebkitBackgroundClip: i === 1 ? 'text' : undefined,
                     backgroundClip: i === 1 ? 'text' : undefined,
                   }}>
@@ -147,7 +178,7 @@ export default function HomePage() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.7, delay: 0.55 }}
-              style={{ fontFamily: "'DM Sans',sans-serif", fontSize: 'clamp(15px,1.3vw,17px)', lineHeight: 1.65, color: '#A6A2C2', maxWidth: 480, margin: '24px 0 36px' }}
+              style={{ fontFamily: "'DM Sans',sans-serif", fontSize: 'clamp(16px,1.4vw,19px)', lineHeight: 1.65, color: '#A6A2C2', maxWidth: 560, margin: '18px auto 28px' }}
             >
               Connecting verified crypto projects with influencers who make a genuine impact — in the world of Web3.
             </motion.p>
@@ -156,7 +187,7 @@ export default function HomePage() {
               initial={{ opacity: 0, y: 16 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.68 }}
-              style={{ display: 'flex', gap: 14, flexWrap: 'wrap' }}
+              style={{ display: 'flex', gap: 14, flexWrap: 'wrap', justifyContent: 'center' }}
             >
               <Link href="/contact">
                 <motion.span
@@ -181,50 +212,35 @@ export default function HomePage() {
             </motion.div>
           </div>
 
-          {/* RIGHT — globe */}
+          {/* GLOBE — centred below text, top half only */}
           <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 1.2, delay: 0.3 }}
-            style={{ position: 'relative', height: 'clamp(380px,55vw,620px)' }}
+            initial={{ opacity: 0, y: 60 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 1.2, delay: 0.4 }}
+            style={{ position: 'relative', marginTop: 24, height: 'clamp(300px,38vw,500px)', overflow: 'hidden' }}
           >
-            {/* glow behind globe */}
+            {/* purple glow */}
             <div style={{
               position: 'absolute', inset: 0,
-              background: 'radial-gradient(50% 50% at 50% 50%, rgba(107,99,216,0.18) 0%, transparent 70%)',
+              background: 'radial-gradient(60% 80% at 50% 70%, rgba(107,99,216,0.32) 0%, transparent 70%)',
               pointerEvents: 'none', zIndex: 0,
             }} />
-            {/* bottom fade */}
+            {/* bottom fade — hard cut at ~50% so only top hemisphere shows */}
             <div style={{
-              position: 'absolute', bottom: 0, left: 0, right: 0, height: '40%',
-              background: 'linear-gradient(to bottom, transparent, #07070C)',
+              position: 'absolute', bottom: 0, left: 0, right: 0, height: '65%',
+              background: 'linear-gradient(to bottom, transparent 0%, #07070C 60%)',
               pointerEvents: 'none', zIndex: 2,
             }} />
-            <div style={{ position: 'absolute', inset: 0, zIndex: 1 }}>
-              <World data={sampleArcs} globeConfig={globeConfig} />
+            {/* globe canvas — positioned so top of globe is visible */}
+            <div style={{ position: 'absolute', top: 0, left: '50%', transform: 'translateX(-50%)', width: '100%', maxWidth: 900, height: '200%', zIndex: 1 }}>
+              {showGlobe && <World data={sampleArcs} globeConfig={globeConfig} />}
             </div>
           </motion.div>
         </section>
 
-        {/* ── LOGO STRIP ── */}
-        <FadeIn>
-          <section style={{ padding: '18px 0 8px' }}>
-            <p style={{ textAlign: 'center', fontFamily: "'JetBrains Mono',monospace", fontSize: 11, letterSpacing: '0.28em', textTransform: 'uppercase', color: '#6E6A8C', margin: '0 0 26px' }}>Trusted across the Web3 ecosystem</p>
-            <div style={{ position: 'relative', overflow: 'hidden', WebkitMaskImage: 'linear-gradient(90deg,transparent,#000 12%,#000 88%,transparent)', maskImage: 'linear-gradient(90deg,transparent,#000 12%,#000 88%,transparent)' }}>
-              <div className="marquee-l" style={{ display: 'flex', gap: 18, width: 'max-content' }}>
-                {partnersDbl.map((p, i) => (
-                  <div key={i} style={{ display: 'flex', alignItems: 'center', gap: 12, padding: '14px 28px', borderRadius: 14, border: '1px solid rgba(142,134,242,0.10)', background: 'rgba(255,255,255,0.02)', flex: 'none' }}>
-                    <span style={{ width: 10, height: 10, borderRadius: 3, background: 'linear-gradient(135deg,#A99FFF,#6B63D8)' }} />
-                    <span style={{ fontFamily: "'Sora',sans-serif", fontWeight: 500, fontSize: 16, letterSpacing: '0.05em', color: '#B9B5D2', whiteSpace: 'nowrap' }}>{p}</span>
-                  </div>
-                ))}
-              </div>
-            </div>
-          </section>
-        </FadeIn>
 
         {/* ── WHAT WE DO ── */}
-        <section style={{ maxWidth: 1240, margin: '0 auto', padding: 'clamp(80px,11vh,130px) clamp(20px,5vw,48px) 0' }}>
+        <section style={{ maxWidth: 1240, margin: '0 auto', padding: 'clamp(140px,16vh,200px) clamp(20px,5vw,48px) 0' }}>
           <FadeUp><SectionLabel text="What We Do" /></FadeUp>
           <FadeUp delay={0.1}>
             <h2 style={{ fontFamily: "'Sora',sans-serif", fontWeight: 400, fontSize: 'clamp(28px,3.6vw,46px)', lineHeight: 1.08, letterSpacing: '-0.02em', margin: '0 0 48px', maxWidth: 680, color: '#F1EFFA' }}>Everything you need to grow with credibility.</h2>
@@ -247,7 +263,7 @@ export default function HomePage() {
         </section>
 
         {/* ── DIFFERENTIATOR ── */}
-        <section style={{ maxWidth: 1240, margin: '0 auto', padding: 'clamp(80px,11vh,130px) clamp(20px,5vw,48px) 0' }}>
+        <section style={{ maxWidth: 1240, margin: '0 auto', padding: 'clamp(140px,16vh,200px) clamp(20px,5vw,48px) 0' }}>
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit,minmax(320px,1fr))', gap: 'clamp(32px,5vw,72px)', alignItems: 'start' }}>
             <FadeUp>
               <SectionLabel text="What Makes Us Different" />
@@ -287,21 +303,37 @@ export default function HomePage() {
 
         {/* ── AUDIENCE CTA BANNER ── */}
         <FadeUp>
-          <section style={{ maxWidth: 1240, margin: '0 auto', padding: 'clamp(80px,11vh,130px) clamp(20px,5vw,48px) 0' }}>
-            <motion.div whileHover={{ scale: 1.01 }} transition={{ type: 'spring', stiffness: 200 }} style={{ position: 'relative', overflow: 'hidden', borderRadius: 28, border: '1px solid rgba(142,134,242,0.24)', padding: 'clamp(40px,6vw,72px)', textAlign: 'center', background: 'linear-gradient(135deg,rgba(107,99,216,0.20),rgba(40,34,80,0.30))' }}>
-              <div style={{ position: 'absolute', inset: 0, opacity: 0.5, background: 'radial-gradient(60% 120% at 50% 0%, rgba(169,159,255,0.25), transparent 70%)', pointerEvents: 'none' }} />
-              <h2 style={{ position: 'relative', fontFamily: "'Sora',sans-serif", fontWeight: 400, fontSize: 'clamp(26px,3.6vw,44px)', lineHeight: 1.12, letterSpacing: '-0.02em', margin: '0 auto 30px', maxWidth: 760, color: '#F4F2FC' }}>
-                For Brands Ready to Grow — and Creators Ready to Collaborate
-              </h2>
-              <Link href="/contact">
-                <motion.span className="btn-primary" whileHover={{ scale: 1.05, boxShadow: '0 20px 52px rgba(107,99,216,0.75)' }} whileTap={{ scale: 0.97 }} style={{ position: 'relative', display: 'inline-block', fontSize: 15.5, padding: '15px 34px', borderRadius: 13 }}>Work with us →</motion.span>
-              </Link>
+          <section style={{ maxWidth: 1240, margin: '0 auto', padding: 'clamp(140px,16vh,200px) clamp(20px,5vw,48px) 0' }}>
+            <motion.div whileHover={{ scale: 1.01 }} transition={{ type: 'spring', stiffness: 200 }} style={{ position: 'relative', overflow: 'hidden', borderRadius: 28, border: '1px solid rgba(142,134,242,0.24)', minHeight: 600, display: 'flex', alignItems: 'flex-end' }}>
+              {/* Background image */}
+              <div style={{
+                position: 'absolute', inset: 0,
+                backgroundImage: 'url(/collaborate.jpg)',
+                backgroundSize: 'cover',
+                backgroundPosition: 'center center',
+                backgroundRepeat: 'no-repeat',
+                opacity: 1,
+              }} />
+              {/* Black fade from bottom up */}
+              <div style={{
+                position: 'absolute', inset: 0,
+                background: 'linear-gradient(to top, #07070C 0%, #07070C 20%, rgba(7,7,12,0.7) 50%, transparent 100%)',
+              }} />
+              {/* Text — anchored to bottom */}
+              <div style={{ position: 'relative', width: '100%', textAlign: 'center', padding: 'clamp(40px,6vw,64px)' }}>
+                <h2 style={{ fontFamily: "'Sora',sans-serif", fontWeight: 400, fontSize: 'clamp(26px,3.6vw,44px)', lineHeight: 1.12, letterSpacing: '-0.02em', margin: '0 auto 30px', maxWidth: 760, color: '#F4F2FC' }}>
+                  For Brands Ready to Grow — and Creators Ready to Collaborate
+                </h2>
+                <Link href="/contact">
+                  <motion.span className="btn-primary" whileHover={{ scale: 1.05, boxShadow: '0 20px 52px rgba(107,99,216,0.75)' }} whileTap={{ scale: 0.97 }} style={{ position: 'relative', display: 'inline-block', fontSize: 15.5, padding: '15px 34px', borderRadius: 13 }}>Work with us →</motion.span>
+                </Link>
+              </div>
             </motion.div>
           </section>
         </FadeUp>
 
         {/* ── TESTIMONIALS ── */}
-        <section style={{ padding: 'clamp(80px,11vh,130px) 0 0' }}>
+        <section style={{ padding: 'clamp(140px,16vh,200px) 0 0' }}>
           <FadeUp>
             <div style={{ maxWidth: 1240, margin: '0 auto', padding: '0 clamp(20px,5vw,48px)', textAlign: 'center', marginBottom: 48 }}>
               <div style={{ display: 'inline-flex', alignItems: 'center', gap: 11, marginBottom: 18 }}>
@@ -331,61 +363,110 @@ export default function HomePage() {
           </div>
         </section>
 
-        {/* ── FEATURED PROJECTS BENTO ── */}
-        <section style={{ maxWidth: 1240, margin: '0 auto', padding: 'clamp(80px,11vh,130px) clamp(20px,5vw,48px) 0' }}>
+        {/* ── FEATURED PROJECT — MOONPOT ── */}
+        <section style={{ maxWidth: 1240, margin: '0 auto', padding: 'clamp(140px,16vh,200px) clamp(20px,5vw,48px) 0' }}>
           <FadeUp><SectionLabel text="Featured Projects" /></FadeUp>
           <FadeUp delay={0.1}>
             <h2 style={{ fontFamily: "'Sora',sans-serif", fontWeight: 400, fontSize: 'clamp(28px,3.8vw,48px)', lineHeight: 1.07, letterSpacing: '-0.02em', margin: '0 0 40px', color: '#F1EFFA' }}>What Success Looks Like</h2>
           </FadeUp>
           <FadeIn delay={0.2}>
-            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(6,1fr)', gridAutoRows: 200, gap: 18 }}>
-              <motion.div whileHover={{ scale: 1.015 }} transition={{ type: 'spring', stiffness: 200 }} style={{ gridColumn: 'span 4', gridRow: 'span 2', position: 'relative', overflow: 'hidden', borderRadius: 22, border: '1px solid rgba(142,134,242,0.14)', background: 'repeating-linear-gradient(135deg,rgba(107,99,216,0.10) 0 14px,rgba(107,99,216,0.04) 14px 28px)', display: 'flex', flexDirection: 'column', justifyContent: 'flex-end', padding: 30 }}>
-                <span style={{ fontFamily: "'JetBrains Mono',monospace", fontSize: 11, letterSpacing: '0.2em', color: '#8A86AC', position: 'absolute', top: 24, left: 30 }}>project shot — replace</span>
-                <span style={{ fontFamily: "'JetBrains Mono',monospace", fontSize: 11, letterSpacing: '0.22em', textTransform: 'uppercase', color: '#A99FFF', marginBottom: 8 }}>Token Launch</span>
-                <h3 style={{ fontFamily: "'Sora',sans-serif", fontWeight: 400, fontSize: 24, color: '#F1EFFA', margin: 0 }}>From whitepaper to a verified, holder-driven community.</h3>
+            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(6,1fr)', gridAutoRows: 200, gap: 16 }}>
+              <motion.div whileHover={{ scale: 1.012 }} transition={{ type: 'spring', stiffness: 200 }} style={{ gridColumn: 'span 4', gridRow: 'span 2', position: 'relative', overflow: 'hidden', borderRadius: 24, border: '1px solid rgba(142,134,242,0.18)' }}>
+                <div style={{ position: 'absolute', inset: 0, backgroundImage: 'url(/shotss.png)', backgroundSize: 'cover', backgroundPosition: 'center' }} />
+                <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to top, rgba(7,7,12,0.96) 0%, rgba(7,7,12,0.7) 40%, rgba(7,7,12,0.3) 70%, rgba(7,7,12,0.15) 100%)' }} />
+                <div style={{ position: 'absolute', bottom: 0, left: 0, right: 0, padding: 32 }}>
+                  <span style={{ fontFamily: "'JetBrains Mono',monospace", fontSize: 11, letterSpacing: '0.22em', textTransform: 'uppercase', color: '#A99FFF', display: 'block', marginBottom: 10 }}>Blind Mint Protocol · DeFi NFT</span>
+                  <h3 style={{ fontFamily: "'Sora',sans-serif", fontWeight: 400, fontSize: 'clamp(18px,2vw,26px)', color: '#F4F2FC', margin: '0 0 8px' }}>The Moonpot</h3>
+                  <p style={{ fontFamily: "'DM Sans',sans-serif", fontSize: 14.5, lineHeight: 1.62, color: '#B0ACCC', margin: 0, maxWidth: 420 }}>A fully on-chain blind mint protocol where every TMP minted may drop a rare NFT linked to real USDC rewards — no presales, no team tokens, powered by Chainlink VRF randomness.</p>
+                </div>
+                <a href="https://themoonpot.com/" target="_blank" rel="noopener noreferrer" style={{ position: 'absolute', top: 24, right: 24, fontFamily: "'JetBrains Mono',monospace", fontSize: 11, letterSpacing: '0.18em', color: '#8E86F2', textDecoration: 'none', border: '1px solid rgba(142,134,242,0.3)', padding: '6px 14px', borderRadius: 100, background: 'rgba(7,7,12,0.6)', backdropFilter: 'blur(8px)' }}>↗ Visit</a>
               </motion.div>
-              {[
-                { label: 'NFT Drop', title: 'Authentic spotlight, real demand.', span: 'span 2', size: 17 },
-                { label: 'Brand Campaign', title: 'Repositioned for the right audience.', span: 'span 2', size: 17 },
-                { label: 'Influencer Activation', title: 'Verified creators, measurable reach.', span: 'span 3', size: 19 },
-                { label: 'Community Growth', title: 'From hype to lasting holders.', span: 'span 3', size: 19 },
-              ].map(({ label, title, span, size }, i) => (
-                <motion.div key={i} whileHover={{ scale: 1.02 }} transition={{ type: 'spring', stiffness: 200 }} style={{ gridColumn: span, position: 'relative', overflow: 'hidden', borderRadius: 22, border: '1px solid rgba(142,134,242,0.14)', background: 'repeating-linear-gradient(135deg,rgba(142,134,242,0.08) 0 12px,rgba(142,134,242,0.02) 12px 24px)', display: 'flex', flexDirection: 'column', justifyContent: 'flex-end', padding: 24 }}>
-                  <span style={{ fontFamily: "'JetBrains Mono',monospace", fontSize: 10.5, letterSpacing: '0.2em', color: '#8A86AC', position: 'absolute', top: 20, left: 24 }}>project shot</span>
-                  <span style={{ fontFamily: "'JetBrains Mono',monospace", fontSize: 10.5, letterSpacing: '0.22em', textTransform: 'uppercase', color: '#A99FFF', marginBottom: 6 }}>{label}</span>
-                  <h3 style={{ fontFamily: "'Sora',sans-serif", fontWeight: 400, fontSize: size, color: '#F1EFFA', margin: 0 }}>{title}</h3>
-                </motion.div>
-              ))}
+              <motion.div whileHover={{ y: -4 }} transition={{ type: 'spring', stiffness: 260 }} style={{ gridColumn: 'span 2', padding: 28, borderRadius: 24, border: '1px solid rgba(142,134,242,0.14)', background: 'linear-gradient(180deg,rgba(255,255,255,0.04),rgba(255,255,255,0.01))', display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
+                <span style={{ fontFamily: "'JetBrains Mono',monospace", fontSize: 11, letterSpacing: '0.2em', color: '#7E7AA0', textTransform: 'uppercase' }}>Smart Contracts</span>
+                <div>
+                  <div style={{ fontFamily: "'Sora',sans-serif", fontWeight: 400, fontSize: 32, color: '#A99FFF', marginBottom: 6 }}>100%</div>
+                  <div style={{ fontFamily: "'DM Sans',sans-serif", fontSize: 14, color: '#A09CBE' }}>Immutable, fully on-chain. No presales, no team tokens.</div>
+                </div>
+              </motion.div>
+              <motion.div whileHover={{ y: -4 }} transition={{ type: 'spring', stiffness: 260 }} style={{ gridColumn: 'span 2', padding: 28, borderRadius: 24, border: '1px solid rgba(142,134,242,0.22)', background: 'linear-gradient(135deg,rgba(107,99,216,0.18),rgba(107,99,216,0.04))', display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
+                <span style={{ fontFamily: "'JetBrains Mono',monospace", fontSize: 11, letterSpacing: '0.2em', color: '#A99FFF', textTransform: 'uppercase' }}>Randomness</span>
+                <div>
+                  <div style={{ fontFamily: "'Sora',sans-serif", fontWeight: 400, fontSize: 22, color: '#F4F2FC', marginBottom: 6 }}>Chainlink VRF</div>
+                  <div style={{ fontFamily: "'DM Sans',sans-serif", fontSize: 14, color: '#BCB7D8' }}>Verifiable on-chain NFT rarity. No manipulation possible.</div>
+                </div>
+              </motion.div>
             </div>
           </FadeIn>
         </section>
 
-        {/* ── HOW WE WORK ── */}
-        <section style={{ maxWidth: 1240, margin: '0 auto', padding: 'clamp(80px,11vh,130px) clamp(20px,5vw,48px) 0' }}>
-          <FadeUp><h2 style={{ fontFamily: "'Sora',sans-serif", fontWeight: 400, fontSize: 'clamp(28px,3.8vw,48px)', lineHeight: 1.07, letterSpacing: '-0.02em', margin: '0 0 48px', color: '#F1EFFA' }}>How we work</h2></FadeUp>
-          <StaggerGroup style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit,minmax(240px,1fr))', gap: 18 }}>
-            {[
-              { step: 'STEP 01', title: 'You share your vision.', body: "Tell us your goal, your project, and your timeline. Whether it's a token launch, NFT drop, or brand expansion — we start by understanding what success means to you.", accent: false },
-              { step: 'STEP 02', title: 'We verify and match.', body: "Every project is screened for authenticity and potential. Then, we connect you with verified influencers whose audience, tone, and values align perfectly with your brand.", accent: false },
-              { step: 'STEP 03', title: 'We build and execute.', body: "Our team designs the full strategy — from creative direction and content planning to campaign management and deadlines. You focus on growth; we handle the rest.", accent: false },
-              { step: 'STEP 04', title: 'You see results.', body: "Content goes live. Reports are delivered. Visibility increases. We turn verified connections into measurable impact.", accent: true },
-            ].map(({ step, title, body, accent }) => (
-              <StaggerItem key={step}>
-                <motion.div whileHover={{ y: -5 }} transition={{ type: 'spring', stiffness: 300 }} style={{ padding: 30, borderRadius: 20, border: `1px solid rgba(142,134,242,${accent ? '0.22' : '0.12'})`, background: accent ? 'linear-gradient(135deg,rgba(107,99,216,0.16),rgba(107,99,216,0.04))' : 'linear-gradient(180deg,rgba(255,255,255,0.035),rgba(255,255,255,0.01))' }}>
-                  <div style={{ fontFamily: "'JetBrains Mono',monospace", fontSize: 13, color: accent ? '#A99FFF' : '#7E7AA0', marginBottom: 18 }}>{step}</div>
-                  <h3 style={{ fontFamily: "'Sora',sans-serif", fontWeight: 400, fontSize: 19, color: '#F1EFFA', margin: '0 0 12px' }}>{title}</h3>
-                  <p style={{ fontFamily: "'DM Sans',sans-serif", fontSize: 14.5, lineHeight: 1.6, color: accent ? '#BCB7D8' : '#A09CBE', margin: 0 }}>{body}</p>
-                </motion.div>
-              </StaggerItem>
-            ))}
-          </StaggerGroup>
+        {/* ── HOW WE WORK — BENTO ── */}
+        <section style={{ maxWidth: 1240, margin: '0 auto', padding: 'clamp(140px,16vh,200px) clamp(20px,5vw,48px) 0' }}>
+          <FadeUp><SectionLabel text="Our Process" /></FadeUp>
+          <FadeUp delay={0.1}>
+            <h2 style={{ fontFamily: "'Sora',sans-serif", fontWeight: 400, fontSize: 'clamp(28px,3.8vw,48px)', lineHeight: 1.07, letterSpacing: '-0.02em', margin: '0 0 40px', color: '#F1EFFA' }}>How we work</h2>
+          </FadeUp>
+          <FadeIn delay={0.15}>
+            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(6,1fr)', gridAutoRows: 180, gap: 16 }}>
+
+              {/* STEP 01 — wide */}
+              <motion.div whileHover={{ y: -4 }} transition={{ type: 'spring', stiffness: 260 }} style={{ gridColumn: 'span 4', gridRow: 'span 2', position: 'relative', overflow: 'hidden', padding: 36, borderRadius: 24, border: '1px solid rgba(142,134,242,0.16)', background: 'linear-gradient(135deg,rgba(107,99,216,0.14),rgba(30,26,64,0.2))', display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
+                <div style={{ fontFamily: "'JetBrains Mono',monospace", fontSize: 12, letterSpacing: '0.22em', color: '#A99FFF' }}>STEP 01</div>
+                <Image
+                  src="/png-step1.png"
+                  alt=""
+                  width={280}
+                  height={280}
+                  style={{ position: 'absolute', right: -20, top: '50%', transform: 'translateY(-58%)', opacity: 0.92, pointerEvents: 'none', userSelect: 'none' }}
+                />
+                <div style={{ position: 'relative' }}>
+                  <h3 style={{ fontFamily: "'Sora',sans-serif", fontWeight: 400, fontSize: 'clamp(20px,2vw,28px)', color: '#F1EFFA', margin: '0 0 14px' }}>You share your vision.</h3>
+                  <p style={{ fontFamily: "'DM Sans',sans-serif", fontSize: 15, lineHeight: 1.65, color: '#A6A2C2', margin: 0, maxWidth: 360 }}>Tell us your goal, your project, and your timeline. Whether it's a token launch, NFT drop, or brand expansion — we start by understanding what success means to you.</p>
+                </div>
+              </motion.div>
+
+              {/* STEP 02 — tall right */}
+              <motion.div whileHover={{ y: -4 }} transition={{ type: 'spring', stiffness: 260 }} style={{ gridColumn: 'span 2', gridRow: 'span 2', position: 'relative', overflow: 'hidden', padding: 30, borderRadius: 24, border: '1px solid rgba(142,134,242,0.12)', background: 'linear-gradient(180deg,rgba(255,255,255,0.04),rgba(255,255,255,0.01))', display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
+                <div style={{ fontFamily: "'JetBrains Mono',monospace", fontSize: 12, letterSpacing: '0.22em', color: '#7E7AA0' }}>STEP 02</div>
+                <Image
+                  src="/png-step2.png"
+                  alt=""
+                  width={200}
+                  height={200}
+                  style={{ position: 'absolute', right: -24, top: '38%', transform: 'translateY(-50%) rotate(-20deg)', opacity: 0.55, filter: 'brightness(0.7) saturate(0.4)', pointerEvents: 'none', userSelect: 'none' }}
+                />
+                <div style={{ position: 'relative' }}>
+                  <h3 style={{ fontFamily: "'Sora',sans-serif", fontWeight: 400, fontSize: 19, color: '#F1EFFA', margin: '0 0 12px' }}>We verify and match.</h3>
+                  <p style={{ fontFamily: "'DM Sans',sans-serif", fontSize: 14, lineHeight: 1.62, color: '#A09CBE', margin: 0 }}>Every project is screened for authenticity. Then we connect you with verified influencers whose values align with your brand.</p>
+                </div>
+              </motion.div>
+
+              {/* STEP 03 — bottom left */}
+              <motion.div whileHover={{ y: -4 }} transition={{ type: 'spring', stiffness: 260 }} style={{ gridColumn: 'span 3', padding: 30, borderRadius: 24, border: '1px solid rgba(142,134,242,0.12)', background: 'linear-gradient(180deg,rgba(255,255,255,0.04),rgba(255,255,255,0.01))', display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
+                <div style={{ fontFamily: "'JetBrains Mono',monospace", fontSize: 12, letterSpacing: '0.22em', color: '#7E7AA0' }}>STEP 03</div>
+                <div>
+                  <h3 style={{ fontFamily: "'Sora',sans-serif", fontWeight: 400, fontSize: 19, color: '#F1EFFA', margin: '0 0 10px' }}>We build and execute.</h3>
+                  <p style={{ fontFamily: "'DM Sans',sans-serif", fontSize: 14, lineHeight: 1.62, color: '#A09CBE', margin: 0 }}>Strategy, content, campaign management — handled. You focus on growth.</p>
+                </div>
+              </motion.div>
+
+              {/* STEP 04 — bottom right accent */}
+              <motion.div whileHover={{ y: -4 }} transition={{ type: 'spring', stiffness: 260 }} style={{ gridColumn: 'span 3', padding: 30, borderRadius: 24, border: '1px solid rgba(142,134,242,0.26)', background: 'linear-gradient(135deg,rgba(107,99,216,0.22),rgba(107,99,216,0.06))', display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
+                <div style={{ fontFamily: "'JetBrains Mono',monospace", fontSize: 12, letterSpacing: '0.22em', color: '#A99FFF' }}>STEP 04</div>
+                <div>
+                  <h3 style={{ fontFamily: "'Sora',sans-serif", fontWeight: 400, fontSize: 19, color: '#F4F2FC', margin: '0 0 10px' }}>You see results.</h3>
+                  <p style={{ fontFamily: "'DM Sans',sans-serif", fontSize: 14, lineHeight: 1.62, color: '#BCB7D8', margin: 0 }}>Content goes live. Reports delivered. Visibility increases. Verified connections turned into measurable impact.</p>
+                </div>
+              </motion.div>
+
+            </div>
+          </FadeIn>
           <FadeUp delay={0.2} style={{ marginTop: 36 }}>
             <Link href="/contact"><motion.span className="btn-primary" whileHover={{ scale: 1.04 }} style={{ display: 'inline-block', fontSize: 15, padding: '14px 30px', borderRadius: 13 }}>Contact us →</motion.span></Link>
           </FadeUp>
         </section>
 
         {/* ── MISSION + STATS ── */}
-        <section style={{ maxWidth: 1240, margin: '0 auto', padding: 'clamp(80px,11vh,130px) clamp(20px,5vw,48px) 0' }}>
+        <section style={{ maxWidth: 1240, margin: '0 auto', padding: 'clamp(140px,16vh,200px) clamp(20px,5vw,48px) 0' }}>
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit,minmax(300px,1fr))', gap: 'clamp(32px,5vw,64px)', alignItems: 'center' }}>
             <FadeUp>
               <SectionLabel text="A Creative Agency with a Global Mission" />
@@ -419,9 +500,14 @@ export default function HomePage() {
 
         {/* ── FINAL CTA ── */}
         <FadeUp>
-          <section style={{ maxWidth: 1240, margin: '0 auto', padding: 'clamp(80px,11vh,130px) clamp(20px,5vw,48px) clamp(80px,11vh,120px)' }}>
-            <motion.div whileHover={{ scale: 1.005 }} style={{ position: 'relative', overflow: 'hidden', borderRadius: 30, border: '1px solid rgba(142,134,242,0.26)', padding: 'clamp(48px,7vw,90px) clamp(28px,5vw,64px)', textAlign: 'center', background: 'linear-gradient(160deg,rgba(107,99,216,0.22),rgba(30,26,64,0.4))' }}>
-              <div style={{ position: 'absolute', inset: 0, opacity: 0.6, background: 'radial-gradient(50% 100% at 50% 0%, rgba(169,159,255,0.3), transparent 70%)', pointerEvents: 'none' }} />
+          <section style={{ maxWidth: 1240, margin: '0 auto', padding: 'clamp(140px,16vh,200px) clamp(20px,5vw,48px) clamp(140px,16vh,200px)' }}>
+            <motion.div whileHover={{ scale: 1.005 }} style={{ position: 'relative', overflow: 'hidden', borderRadius: 30, border: '1px solid rgba(142,134,242,0.26)', padding: 'clamp(48px,7vw,90px) clamp(28px,5vw,64px)', textAlign: 'center', background: 'rgba(12,10,28,0.85)' }}>
+              {/* glow orb — purple left */}
+              <div style={{ position: 'absolute', width: 420, height: 420, borderRadius: '50%', left: '-8%', top: '-30%', background: 'radial-gradient(circle, rgba(107,99,216,0.45) 0%, transparent 70%)', pointerEvents: 'none', filter: 'blur(40px)' }} />
+              {/* glow orb — cyan center-top */}
+              <div style={{ position: 'absolute', width: 340, height: 340, borderRadius: '50%', left: '50%', top: '-40%', transform: 'translateX(-50%)', background: 'radial-gradient(circle, rgba(80,195,255,0.3) 0%, transparent 70%)', pointerEvents: 'none', filter: 'blur(50px)' }} />
+              {/* glow orb — pink right */}
+              <div style={{ position: 'absolute', width: 380, height: 380, borderRadius: '50%', right: '-6%', bottom: '-30%', background: 'radial-gradient(circle, rgba(201,111,232,0.38) 0%, transparent 70%)', pointerEvents: 'none', filter: 'blur(44px)' }} />
               <div style={{ position: 'relative' }}>
                 <span style={{ fontFamily: "'JetBrains Mono',monospace", fontSize: 12, letterSpacing: '0.26em', textTransform: 'uppercase', color: '#A99FFF' }}>Get Started</span>
                 <h2 style={{ fontFamily: "'Sora',sans-serif", fontWeight: 400, fontSize: 'clamp(30px,4.6vw,60px)', lineHeight: 1.05, letterSpacing: '-0.025em', margin: '18px auto 22px', maxWidth: 780, color: '#F4F2FC' }}>Ready to Grow. Verified. Globally.</h2>

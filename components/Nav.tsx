@@ -3,6 +3,7 @@ import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import Image from 'next/image';
 import { motion } from 'framer-motion';
+import { useState, useEffect } from 'react';
 
 const links = [
   { href: '/', label: 'Home' },
@@ -14,90 +15,89 @@ const links = [
 export default function Nav() {
   const path = usePathname();
   const isActive = (href: string) => href === '/' ? path === '/' : path.startsWith(href);
+  const [mounted, setMounted] = useState(false);
+  useEffect(() => { setMounted(true); }, []);
 
   return (
-    <motion.nav
-      initial={{ y: -80, opacity: 0 }}
-      animate={{ y: 0, opacity: 1 }}
-      transition={{ duration: 0.7, ease: [0.25, 0.1, 0.25, 1] }}
-      style={{
-        position: 'sticky', top: 0, zIndex: 50,
-        backdropFilter: 'blur(20px)', WebkitBackdropFilter: 'blur(20px)',
-        background: 'rgba(7,7,12,0.65)',
-        borderBottom: '1px solid rgba(142,134,242,0.10)',
-      }}
-    >
-      <div style={{
-        maxWidth: 1240, margin: '0 auto',
-        padding: '0 clamp(20px,5vw,48px)',
-        display: 'flex', alignItems: 'center', justifyContent: 'space-between', height: 68,
-      }}>
-        {/* Logo */}
-        <Link href="/" style={{ display: 'flex', alignItems: 'center', gap: 12, textDecoration: 'none' }}>
-          <motion.div whileHover={{ scale: 1.08 }} transition={{ type: 'spring', stiffness: 400 }}>
-            <Image
-              src="/assets/kaysa-logo.webp" alt="Kaysa" width={38} height={38}
-              style={{ display: 'block', filter: 'drop-shadow(0 0 16px rgba(107,99,216,0.7))' }}
-            />
-          </motion.div>
-          <span style={{ fontFamily: "'Sora',sans-serif", fontWeight: 700, fontSize: 17, letterSpacing: '0.14em', color: '#F3F1FB' }}>
-            KAYSA<span style={{ color: '#8E86F2' }}> CREATIVE</span>
-          </span>
-        </Link>
+    <>
+      {/* ── Floating pill nav — always visible ── */}
+          <motion.div
+            initial={{ y: -100, opacity: 0 }}
+            animate={mounted ? { y: 0, opacity: 1 } : { y: -100, opacity: 0 }}
+            transition={{ duration: 0.7, ease: [0.25, 0.1, 0.25, 1] }}
+            style={{
+              position: 'fixed', top: 18, left: 0, right: 0,
+              zIndex: 100, display: 'flex', justifyContent: 'center',
+              padding: '0 clamp(20px,5vw,48px)',
+              pointerEvents: 'none',
+            }}
+          >
+            <div style={{
+              pointerEvents: 'all',
+              display: 'flex', alignItems: 'center', justifyContent: 'space-between',
+              gap: 8,
+              padding: '8px 10px 8px 16px',
+              width: '100%',
+              maxWidth: 1240,
+              borderRadius: 20,
+              border: '1px solid rgba(142,134,242,0.18)',
+              background: 'rgba(7,7,12,0.45)',
+              backdropFilter: 'blur(16px)', WebkitBackdropFilter: 'blur(16px)',
+              boxShadow: '0 8px 32px rgba(0,0,0,0.4), 0 0 0 1px rgba(142,134,242,0.08)',
+            }}>
+              {/* Logo */}
+              <Link href="/" style={{ display: 'flex', alignItems: 'center', gap: 10, textDecoration: 'none', marginRight: 8 }}>
+                <Image
+                  src="/assets/kaysa-logo.webp" alt="Kaysa" width={28} height={28}
+                  style={{ display: 'block', filter: 'drop-shadow(0 0 10px rgba(107,99,216,0.7))' }}
+                />
+                <span style={{ fontFamily: "'Sora',sans-serif", fontWeight: 700, fontSize: 14, letterSpacing: '0.12em', color: '#F3F1FB' }}>
+                  KAYSA<span style={{ color: '#8E86F2' }}> CREATIVE</span>
+                </span>
+              </Link>
 
-        {/* Links */}
-        <div style={{ display: 'flex', alignItems: 'center', gap: 2 }}>
-          {links.map(({ href, label }, i) => (
-            <motion.div
-              key={href}
-              initial={{ opacity: 0, y: -10 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.1 + i * 0.07, duration: 0.5 }}
-            >
-              <Link href={href} style={{ position: 'relative', display: 'block', textDecoration: 'none' }}>
+              {/* Divider */}
+              <div style={{ width: 1, height: 20, background: 'rgba(142,134,242,0.18)' }} />
+
+              {/* Links */}
+              <div style={{ display: 'flex', alignItems: 'center', gap: 2 }}>
+                {links.map(({ href, label }) => (
+                  <Link key={href} href={href} style={{ textDecoration: 'none' }}>
+                    <span className="nav-btn" style={{
+                      position: 'relative', display: 'block',
+                      color: isActive(href) ? '#FFFFFF' : undefined,
+                    }}>
+                      {label}
+                      {isActive(href) && (
+                        <motion.span
+                          layoutId="float-dot"
+                          style={{
+                            position: 'absolute', left: '50%', bottom: 2,
+                            transform: 'translateX(-50%)',
+                            width: 4, height: 4, borderRadius: '50%',
+                            background: '#8E86F2', boxShadow: '0 0 6px #6B63D8',
+                          }}
+                        />
+                      )}
+                    </span>
+                  </Link>
+                ))}
+              </div>
+
+              {/* CTA */}
+              <Link href="/contact" style={{ textDecoration: 'none' }}>
                 <motion.span
-                  className="nav-btn"
-                  whileHover={{ color: '#FFFFFF' }}
-                  style={{ display: 'block', position: 'relative' }}
+                  className="btn-primary"
+                  whileHover={{ scale: 1.04, boxShadow: '0 12px 36px rgba(107,99,216,0.65)' }}
+                  whileTap={{ scale: 0.97 }}
+                  style={{ display: 'inline-block', fontSize: 13.5, padding: '9px 18px', borderRadius: 10 }}
                 >
-                  {label}
-                  {isActive(href) && (
-                    <motion.span
-                      layoutId="nav-dot"
-                      style={{
-                        position: 'absolute', left: '50%', bottom: 2,
-                        transform: 'translateX(-50%)',
-                        width: 5, height: 5, borderRadius: '50%',
-                        background: '#8E86F2', boxShadow: '0 0 8px #6B63D8',
-                      }}
-                    />
-                  )}
+                  Let&apos;s Talk
                 </motion.span>
               </Link>
-            </motion.div>
-          ))}
-
-          <motion.div
-            initial={{ opacity: 0, scale: 0.9 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ delay: 0.45, duration: 0.5 }}
-          >
-            <Link href="/contact" style={{ textDecoration: 'none' }}>
-              <motion.span
-                className="btn-primary"
-                whileHover={{ scale: 1.04, boxShadow: '0 12px 36px rgba(107,99,216,0.65)' }}
-                whileTap={{ scale: 0.97 }}
-                style={{
-                  display: 'inline-block', marginLeft: 14,
-                  fontSize: 14.5, padding: '11px 22px', borderRadius: 11,
-                }}
-              >
-                Let&apos;s Talk
-              </motion.span>
-            </Link>
+            </div>
           </motion.div>
-        </div>
-      </div>
-    </motion.nav>
+    </>
   );
 }
+

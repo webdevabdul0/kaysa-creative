@@ -11,13 +11,13 @@ export default function CollaborationsPage() {
       <Nav />
       <main>
         {/* HERO */}
-        <section style={{ maxWidth: 1240, margin: '0 auto', padding: 'clamp(80px,12vh,140px) clamp(20px,5vw,48px) clamp(50px,7vh,80px)', textAlign: 'center' }}>
+        <section style={{ textAlign: 'center', padding: 'clamp(100px,13vh,140px) clamp(20px,5vw,48px) clamp(50px,7vh,80px)' }}>
           <div style={{ display: 'inline-flex', alignItems: 'center', gap: 10, padding: '8px 16px', borderRadius: 100, border: '1px solid rgba(142,134,242,0.22)', background: 'rgba(142,134,242,0.06)', marginBottom: 30 }}>
             <span style={{ width: 7, height: 7, borderRadius: '50%', background: '#8E86F2', boxShadow: '0 0 12px #6B63D8' }} />
             <span style={{ fontFamily: "'JetBrains Mono',monospace", fontSize: 11.5, letterSpacing: '0.26em', textTransform: 'uppercase', color: '#B7B2E0' }}>Services</span>
           </div>
-          <h1 style={{ fontFamily: "'Sora',sans-serif", fontWeight: 800, fontSize: 'clamp(38px,6vw,82px)', lineHeight: 1.03, letterSpacing: '-0.025em', margin: '0 auto', maxWidth: 920, color: '#F4F2FC' }}>
-            Dive Into Our Collabs. <span style={{ background: 'linear-gradient(120deg,#A99FFF,#6B63D8)', WebkitBackgroundClip: 'text', backgroundClip: 'text', color: 'transparent' }}>Elevate Your Brand</span>
+          <h1 style={{ fontFamily: "'Sora',sans-serif", fontWeight: 300, fontSize: 'clamp(36px,5vw,72px)', lineHeight: 1.05, letterSpacing: '-0.03em', margin: '0 auto', color: '#F4F2FC' }}>
+            Dive Into Our Collabs.{' '}<span style={{ fontWeight: 400, background: 'linear-gradient(120deg,#A99FFF,#6B63D8)', WebkitBackgroundClip: 'text', backgroundClip: 'text', color: 'transparent' }}>Elevate Your Brand</span>
           </h1>
           <div style={{ marginTop: 40 }}>
             <Link href="/contact" className="btn-primary" style={{ fontSize: 15.5, padding: '15px 32px', borderRadius: 13, textDecoration: 'none', display: 'inline-block' }}>Talk With an Expert →</Link>

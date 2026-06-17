@@ -169,7 +169,7 @@ export function Globe({ globeConfig, data }: WorldProps) {
 export function WebGLRendererConfig() {
   const { gl, size } = useThree();
   useEffect(() => {
-    gl.setPixelRatio(window.devicePixelRatio);
+    gl.setPixelRatio(Math.min(window.devicePixelRatio, 1.5));
     gl.setSize(size.width, size.height);
     gl.setClearColor(0x000000, 0);
   }, []);
@@ -180,7 +180,7 @@ export function World(props: WorldProps) {
   const { globeConfig } = props;
   const scene = new Scene();
   return (
-    <Canvas scene={scene} camera={new PerspectiveCamera(50, 1.2, 180, 1800)} gl={{ alpha: true, antialias: true }}>
+    <Canvas scene={scene} camera={new PerspectiveCamera(50, 1.2, 180, 1800)} gl={{ alpha: true, antialias: true, powerPreference: 'low-power' }}>
       <WebGLRendererConfig />
       <ambientLight color={globeConfig.ambientLight ?? "#6B63D8"} intensity={0.6} />
       <directionalLight color={globeConfig.directionalLeftLight ?? "#A99FFF"} position={new Vector3(-400, 100, 400)} />

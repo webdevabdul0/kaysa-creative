@@ -18,7 +18,7 @@ export default function AboutPage() {
       <Nav />
       <main>
         {/* HERO */}
-        <section style={{ maxWidth: 1240, margin: '0 auto', padding: 'clamp(80px,12vh,140px) clamp(20px,5vw,48px) clamp(40px,6vh,70px)', textAlign: 'center' }}>
+        <section style={{ textAlign: 'center', padding: 'clamp(100px,13vh,140px) clamp(20px,5vw,48px) clamp(40px,6vh,70px)' }}>
           <motion.div
             initial={{ opacity: 0, scale: 0.9 }}
             animate={{ opacity: 1, scale: 1 }}
@@ -32,10 +32,10 @@ export default function AboutPage() {
             initial={{ opacity: 0, y: 50 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.15, ease: [0.25, 0.1, 0.25, 1] }}
-            style={{ fontFamily: "'Sora',sans-serif", fontWeight: 800, fontSize: 'clamp(40px,6.4vw,84px)', lineHeight: 1.02, letterSpacing: '-0.025em', margin: 0, color: '#F4F2FC' }}
+            style={{ fontFamily: "'Sora',sans-serif", fontWeight: 300, fontSize: 'clamp(36px,5vw,72px)', lineHeight: 1.05, letterSpacing: '-0.03em', margin: 0, color: '#F4F2FC' }}
           >
             About{' '}
-            <span style={{ background: 'linear-gradient(120deg,#A99FFF,#6B63D8)', WebkitBackgroundClip: 'text', backgroundClip: 'text', color: 'transparent' }}>Kaysa</span>
+            <span style={{ fontWeight: 400, background: 'linear-gradient(120deg,#A99FFF,#6B63D8)', WebkitBackgroundClip: 'text', backgroundClip: 'text', color: 'transparent' }}>Kaysa</span>
           </motion.h1>
         </section>
 

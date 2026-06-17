@@ -24,16 +24,17 @@ export default function ContactPage() {
       <Nav />
       <main>
         {/* HERO */}
-        <section style={{ maxWidth: 1240, margin: '0 auto', padding: 'clamp(80px,12vh,140px) clamp(20px,5vw,48px) clamp(40px,6vh,60px)', textAlign: 'center' }}>
+        <section style={{ textAlign: 'center', padding: 'clamp(100px,13vh,140px) clamp(20px,5vw,48px) clamp(40px,6vh,60px)' }}>
           <div style={{ display: 'inline-flex', alignItems: 'center', gap: 10, padding: '8px 16px', borderRadius: 100, border: '1px solid rgba(142,134,242,0.22)', background: 'rgba(142,134,242,0.06)', marginBottom: 30 }}>
             <span style={{ width: 7, height: 7, borderRadius: '50%', background: '#8E86F2', boxShadow: '0 0 12px #6B63D8' }} />
             <span style={{ fontFamily: "'JetBrains Mono',monospace", fontSize: 11.5, letterSpacing: '0.26em', textTransform: 'uppercase', color: '#B7B2E0' }}>Contact</span>
           </div>
-          <h1 style={{ fontFamily: "'Sora',sans-serif", fontWeight: 800, fontSize: 'clamp(40px,6.2vw,82px)', lineHeight: 1.03, letterSpacing: '-0.025em', margin: '0 auto', maxWidth: 760, color: '#F4F2FC' }}>
-            Get in <span style={{ background: 'linear-gradient(120deg,#A99FFF,#6B63D8)', WebkitBackgroundClip: 'text', backgroundClip: 'text', color: 'transparent' }}>Touch</span>
+          <h1 style={{ fontFamily: "'Sora',sans-serif", fontWeight: 300, fontSize: 'clamp(36px,5vw,72px)', lineHeight: 1.05, letterSpacing: '-0.03em', margin: '0 auto 8px', color: '#F4F2FC' }}>
+            Get in{' '}
+            <span style={{ fontWeight: 400, background: 'linear-gradient(120deg,#A99FFF,#6B63D8)', WebkitBackgroundClip: 'text', backgroundClip: 'text', color: 'transparent' }}>Touch</span>
           </h1>
-          <p style={{ fontFamily: "'DM Sans',sans-serif", fontSize: 16, lineHeight: 1.7, color: '#A6A2C2', maxWidth: 680, margin: '28px auto 0' }}>
-            We are excited about the possibility of working together on this creative journey so please don&apos;t hesitate to share your thoughts, questions, or ideas as our enthusiastic team at Kaysa Creative is committed to listening and collaborating with you at every stage to bring your vision to life.
+          <p style={{ fontFamily: "'DM Sans',sans-serif", fontSize: 'clamp(15px,1.3vw,18px)', lineHeight: 1.7, color: '#A6A2C2', maxWidth: 560, margin: '20px auto 0' }}>
+            We are excited about the possibility of working together — share your thoughts, questions, or ideas and our team will get back to you.
           </p>
         </section>
 
