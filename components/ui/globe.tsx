@@ -179,8 +179,31 @@ export function WebGLRendererConfig() {
 export function World(props: WorldProps) {
   const { globeConfig } = props;
   const scene = new Scene();
+  const [webglFailed, setWebglFailed] = useState(false);
+
+  // Check WebGL support before mounting Canvas
+  useEffect(() => {
+    try {
+      const canvas = document.createElement('canvas');
+      const ctx = canvas.getContext('webgl') || canvas.getContext('experimental-webgl');
+      if (!ctx) setWebglFailed(true);
+    } catch {
+      setWebglFailed(true);
+    }
+  }, []);
+
+  if (webglFailed) return null;
+
   return (
-    <Canvas scene={scene} camera={new PerspectiveCamera(50, 1.2, 180, 1800)} gl={{ alpha: true, antialias: true, powerPreference: 'low-power' }}>
+    <Canvas
+      scene={scene}
+      camera={new PerspectiveCamera(50, 1.2, 180, 1800)}
+      gl={{ alpha: true, antialias: true, powerPreference: 'low-power' }}
+      onCreated={({ gl }) => {
+        // Suppress the console error if context is lost after mount
+        gl.domElement.addEventListener('webglcontextlost', (e) => e.preventDefault(), false);
+      }}
+    >
       <WebGLRendererConfig />
       <ambientLight color={globeConfig.ambientLight ?? "#6B63D8"} intensity={0.6} />
       <directionalLight color={globeConfig.directionalLeftLight ?? "#A99FFF"} position={new Vector3(-400, 100, 400)} />
