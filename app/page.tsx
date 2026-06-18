@@ -240,13 +240,13 @@ export default function HomePage() {
 
 
         {/* ── WHAT WE DO ── */}
-        <section style={{ maxWidth: 1240, margin: '0 auto', padding: 'clamp(140px,16vh,200px) clamp(20px,5vw,48px) 0' }}>
+        <section style={{ maxWidth: 1240, margin: '0 auto', padding: 'clamp(160px,18vh,220px) clamp(20px,5vw,48px) 0' }}>
           <FadeUp><SectionLabel text="What We Do" /></FadeUp>
           <FadeUp delay={0.1}>
-            <h2 style={{ fontFamily: "'Sora',sans-serif", fontWeight: 400, fontSize: 'clamp(28px,3.6vw,46px)', lineHeight: 1.08, letterSpacing: '-0.02em', margin: '0 0 clamp(48px,8vh,96px)', maxWidth: 680, color: '#F1EFFA' }}>Everything you need to grow with credibility.</h2>
+            <h2 style={{ fontFamily: "'Sora',sans-serif", fontWeight: 400, fontSize: 'clamp(28px,3.6vw,46px)', lineHeight: 1.08, letterSpacing: '-0.02em', margin: '0 0 clamp(56px,9vh,110px)', maxWidth: 680, color: '#F1EFFA' }}>Everything you need to grow with credibility.</h2>
           </FadeUp>
 
-          {/* Staggered columns — ghost numbers behind, no card bg */}
+          {/* Staggered columns */}
           <div className="stagger-cards" style={{ position: 'relative', display: 'flex', alignItems: 'flex-start' }}>
             {[
               { n: '01', label: 'For Brands & Projects', title: 'Influencer Matchmaking', body: "We connect your brand with verified influencers who align with your voice, audience, and values. No noise — just the right fit." },
@@ -255,18 +255,17 @@ export default function HomePage() {
             ].map(({ n, label, title, body }, i) => (
               <motion.div
                 key={n}
-                initial={{ opacity: 0, y: 40 }}
+                initial={{ opacity: 0, y: 50 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.6, delay: i * 0.15, ease: [0.25, 0.1, 0.25, 1] }}
+                viewport={{ once: true, margin: '-60px' }}
+                transition={{ duration: 0.7, delay: i * 0.18, ease: [0.25, 0.1, 0.25, 1] }}
                 style={{
                   flex: 1,
-                  marginTop: i === 0 ? 0 : i === 1 ? 'clamp(30px,4vw,60px)' : 'clamp(60px,8vw,120px)',
                   position: 'relative',
-                  overflow: 'hidden',
-                  paddingLeft: i > 0 ? 'clamp(24px,3vw,40px)' : 0,
-                  paddingRight: i < 2 ? 'clamp(24px,3vw,40px)' : 0,
-                  paddingTop: 'clamp(80px,10vw,120px)',
+                  paddingLeft: i > 0 ? 'clamp(24px,3vw,48px)' : 0,
+                  paddingRight: i < 2 ? 'clamp(24px,3vw,48px)' : 0,
+                  paddingTop: 'clamp(70px,8vw,100px)',
+                  paddingBottom: 'clamp(32px,5vh,56px)',
                   borderLeft: i > 0 ? '1px solid rgba(142,134,242,0.12)' : 'none',
                 }}
               >
@@ -274,13 +273,12 @@ export default function HomePage() {
                 <div style={{
                   position: 'absolute',
                   top: -10,
-                  right: i < 2 ? 'clamp(24px,3vw,40px)' : 0,
+                  right: i < 2 ? 'clamp(20px,4vw,50px)' : 20,
                   fontFamily: "'Sora',sans-serif", fontWeight: 800,
-                  fontSize: 'clamp(100px,14vw,180px)', lineHeight: 1,
+                  fontSize: 'clamp(70px,9vw,120px)', lineHeight: 1,
                   color: 'rgba(255,255,255,0.06)',
                   userSelect: 'none', pointerEvents: 'none',
                   letterSpacing: '-0.06em',
-                  transform: 'rotate(-8deg)',
                   zIndex: 0,
                 }}>{n}</div>
 

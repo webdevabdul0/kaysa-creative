@@ -156,9 +156,17 @@ a { color: inherit; }
   .nav-links-desktop { display: none !important; }
   .nav-hamburger { display: flex !important; }
 
-  /* what we do staggered cards — remove offset on mobile */
+  /* what we do staggered cards — stack on mobile */
   .stagger-cards { flex-direction: column !important; }
-  .stagger-cards > * { margin-top: 0 !important; }
+  .stagger-cards > * {
+    margin-top: 0 !important;
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+    border-left: none !important;
+    border-top: 1px solid rgba(142,134,242,0.12) !important;
+    padding-top: 40px !important;
+  }
+  .stagger-cards > *:first-child { border-top: none !important; padding-top: 0 !important; }
 
   /* footer responsive */
   .footer-grid { grid-template-columns: 1fr 1fr !important; }
