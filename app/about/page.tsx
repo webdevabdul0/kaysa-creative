@@ -1,5 +1,6 @@
 'use client';
 import Link from 'next/link';
+import Image from 'next/image';
 import { motion } from 'framer-motion';
 import Nav from '@/components/Nav';
 import Footer from '@/components/Footer';
@@ -65,19 +66,13 @@ export default function AboutPage() {
             {/* Image collage */}
             <div style={{ position: 'relative', height: 'clamp(320px,40vw,480px)' }}>
               {/* Background image */}
-              <div style={{ position: 'absolute', top: 0, left: 0, width: '75%', height: '75%', borderRadius: 20, overflow: 'hidden', border: '1px solid rgba(142,134,242,0.16)', background: 'linear-gradient(135deg,rgba(107,99,216,0.18),rgba(30,26,64,0.3))' }}>
-                <div style={{ width: '100%', height: '100%', background: 'repeating-linear-gradient(135deg,rgba(107,99,216,0.08) 0 12px,rgba(107,99,216,0.02) 12px 24px)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                  <span style={{ fontFamily: "'JetBrains Mono',monospace", fontSize: 11, letterSpacing: '0.2em', color: '#6B67A0' }}>VISUAL PLACEHOLDER</span>
-                </div>
+              <div style={{ position: 'absolute', top: 0, left: 0, width: '75%', height: '75%', borderRadius: 20, overflow: 'hidden', border: '1px solid rgba(142,134,242,0.16)' }}>
+                <Image src="/mission/img2.jpg" alt="Mission" fill style={{ objectFit: 'cover' }} />
               </div>
               {/* Foreground image */}
-              <div style={{ position: 'absolute', bottom: 0, right: 0, width: '55%', height: '60%', borderRadius: 20, overflow: 'hidden', border: '1px solid rgba(142,134,242,0.22)', background: 'linear-gradient(160deg,rgba(107,99,216,0.25),rgba(40,34,80,0.4))' }}>
-                <div style={{ width: '100%', height: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                  <span style={{ fontFamily: "'JetBrains Mono',monospace", fontSize: 11, letterSpacing: '0.2em', color: '#A99FFF' }}>VISUAL</span>
-                </div>
+              <div style={{ position: 'absolute', bottom: 0, right: 0, width: '62%', height: '68%', borderRadius: 20, overflow: 'hidden', border: '1px solid rgba(142,134,242,0.22)' }}>
+                <Image src="/mission/img1.jpg" alt="Mission" fill style={{ objectFit: 'cover' }} />
               </div>
-              {/* Accent dot */}
-              <div style={{ position: 'absolute', top: '72%', left: '20%', width: 14, height: 14, borderRadius: '50%', background: '#8E86F2', boxShadow: '0 0 20px rgba(142,134,242,0.7)' }} />
             </div>
 
             {/* Content */}
@@ -96,7 +91,7 @@ export default function AboutPage() {
                   'Transparent, trust-first process',
                 ].map(item => (
                   <div key={item} style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
-                    <span style={{ width: 22, height: 22, borderRadius: 6, flex: 'none', background: 'linear-gradient(135deg,#A99FFF,#6B63D8)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 12, color: '#fff' }}>✓</span>
+                    <Image src="/check-icon.svg" alt="" width={22} height={22} style={{ flex: 'none' }} />
                     <span style={{ fontFamily: "'DM Sans',sans-serif", fontSize: 15, color: '#CFCBE4' }}>{item}</span>
                   </div>
                 ))}
@@ -125,7 +120,7 @@ export default function AboutPage() {
                   'Building the future of Web3 trust',
                 ].map(item => (
                   <div key={item} style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
-                    <span style={{ width: 22, height: 22, borderRadius: 6, flex: 'none', background: 'linear-gradient(135deg,#A99FFF,#6B63D8)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 12, color: '#fff' }}>✓</span>
+                    <Image src="/check-icon.svg" alt="" width={22} height={22} style={{ flex: 'none' }} />
                     <span style={{ fontFamily: "'DM Sans',sans-serif", fontSize: 15, color: '#CFCBE4' }}>{item}</span>
                   </div>
                 ))}
@@ -134,17 +129,12 @@ export default function AboutPage() {
 
             {/* Image collage */}
             <div style={{ position: 'relative', height: 'clamp(320px,40vw,480px)' }}>
-              <div style={{ position: 'absolute', top: 0, right: 0, width: '75%', height: '75%', borderRadius: 20, overflow: 'hidden', border: '1px solid rgba(142,134,242,0.16)', background: 'linear-gradient(135deg,rgba(107,99,216,0.18),rgba(30,26,64,0.3))' }}>
-                <div style={{ width: '100%', height: '100%', background: 'repeating-linear-gradient(135deg,rgba(107,99,216,0.08) 0 12px,rgba(107,99,216,0.02) 12px 24px)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                  <span style={{ fontFamily: "'JetBrains Mono',monospace", fontSize: 11, letterSpacing: '0.2em', color: '#6B67A0' }}>VISUAL PLACEHOLDER</span>
-                </div>
+              <div style={{ position: 'absolute', top: 0, right: 0, width: '75%', height: '75%', borderRadius: 20, overflow: 'hidden', border: '1px solid rgba(142,134,242,0.16)' }}>
+                <Image src="/vision/img2.jpg" alt="Vision" fill style={{ objectFit: 'cover' }} />
               </div>
-              <div style={{ position: 'absolute', bottom: 0, left: 0, width: '55%', height: '60%', borderRadius: 20, overflow: 'hidden', border: '1px solid rgba(142,134,242,0.22)', background: 'linear-gradient(160deg,rgba(107,99,216,0.25),rgba(40,34,80,0.4))' }}>
-                <div style={{ width: '100%', height: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                  <span style={{ fontFamily: "'JetBrains Mono',monospace", fontSize: 11, letterSpacing: '0.2em', color: '#A99FFF' }}>VISUAL</span>
-                </div>
+              <div style={{ position: 'absolute', bottom: 0, left: 0, width: '62%', height: '68%', borderRadius: 20, overflow: 'hidden', border: '1px solid rgba(142,134,242,0.22)' }}>
+                <Image src="/vision/img1.png" alt="Vision" fill style={{ objectFit: 'cover' }} />
               </div>
-              <div style={{ position: 'absolute', top: '72%', right: '20%', width: 14, height: 14, borderRadius: '50%', background: '#8E86F2', boxShadow: '0 0 20px rgba(142,134,242,0.7)' }} />
             </div>
           </motion.div>
 
