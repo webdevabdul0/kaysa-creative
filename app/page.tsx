@@ -241,25 +241,67 @@ export default function HomePage() {
 
         {/* ── WHAT WE DO ── */}
         <section style={{ maxWidth: 1240, margin: '0 auto', padding: 'clamp(140px,16vh,200px) clamp(20px,5vw,48px) 0' }}>
-          <FadeUp><SectionLabel text="What We Do" /></FadeUp>
-          <FadeUp delay={0.1}>
-            <h2 style={{ fontFamily: "'Sora',sans-serif", fontWeight: 400, fontSize: 'clamp(28px,3.6vw,46px)', lineHeight: 1.08, letterSpacing: '-0.02em', margin: '0 0 48px', maxWidth: 680, color: '#F1EFFA' }}>Everything you need to grow with credibility.</h2>
+          <FadeUp style={{ textAlign: 'center', marginBottom: 'clamp(48px,7vh,80px)' }}>
+            <SectionLabel text="What We Do" />
+            <h2 style={{ fontFamily: "'Sora',sans-serif", fontWeight: 400, fontSize: 'clamp(32px,4.2vw,58px)', lineHeight: 1.06, letterSpacing: '-0.025em', margin: '0 auto', maxWidth: 700, color: '#F1EFFA' }}>Everything you need to grow with credibility.</h2>
           </FadeUp>
-          <StaggerGroup style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit,minmax(280px,1fr))', gap: 20 }}>
+
+          {/* Staggered cards */}
+          <div className="stagger-cards" style={{ display: 'flex', gap: 'clamp(16px,3vw,32px)', alignItems: 'flex-start' }}>
             {[
-              { n: '01', title: 'Influencer Matchmaking', body: "We connect your brand with verified influencers who align with your voice, audience, and values." },
-              { n: '02', title: 'Campaign Strategy', body: "We craft tailor-made campaigns to launch, scale or reposition your business — from idea to execution." },
-              { n: '03', title: 'Reputation-Safe Partnerships', body: "Every influencer and brand is screened by our team to protect both sides of the collaboration." },
-            ].map(({ n, title, body }) => (
-              <StaggerItem key={n}>
-                <motion.div className="card" whileHover={{ y: -6, borderColor: 'rgba(142,134,242,0.4)' }} transition={{ type: 'spring', stiffness: 300 }} style={{ position: 'relative', padding: 32, borderRadius: 20, overflow: 'hidden', height: '100%' }}>
-                  <div style={{ width: 48, height: 48, borderRadius: 13, display: 'flex', alignItems: 'center', justifyContent: 'center', background: 'rgba(107,99,216,0.16)', border: '1px solid rgba(142,134,242,0.28)', marginBottom: 22, fontFamily: "'JetBrains Mono',monospace", color: '#A99FFF', fontSize: 18 }}>{n}</div>
-                  <h3 style={{ fontFamily: "'Sora',sans-serif", fontWeight: 400, fontSize: 20, color: '#F1EFFA', margin: '0 0 12px' }}>{title}</h3>
-                  <p style={{ fontFamily: "'DM Sans',sans-serif", fontSize: 15, lineHeight: 1.62, color: '#A09CBE', margin: 0 }}>{body}</p>
-                </motion.div>
-              </StaggerItem>
+              { n: '01', label: 'For Brands & Projects', title: 'Influencer Matchmaking', body: "We connect your brand with verified influencers who align with your voice, audience, and values. No noise — just the right fit." },
+              { n: '02', label: 'Strategy & Execution', title: 'Campaign Strategy', body: "We craft tailor-made campaigns to launch, scale or reposition your business — from concept to live content, handled end-to-end." },
+              { n: '03', label: 'Built-In Protection', title: 'Reputation-Safe Partnerships', body: "Every influencer and brand is screened by our team. We protect both sides of the collaboration so trust is never at risk." },
+            ].map(({ n, label, title, body }, i) => (
+              <motion.div
+                key={n}
+                initial={{ opacity: 0, y: 40 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6, delay: i * 0.15, ease: [0.25, 0.1, 0.25, 1] }}
+                whileHover={{ y: -6 }}
+                style={{
+                  flex: 1,
+                  marginTop: i === 0 ? 0 : i === 1 ? 'clamp(32px,5vw,64px)' : 'clamp(64px,10vw,128px)',
+                  position: 'relative',
+                  padding: 'clamp(28px,3.5vw,44px)',
+                  borderRadius: 24,
+                  border: '1px solid rgba(142,134,242,0.14)',
+                  background: 'linear-gradient(160deg,rgba(255,255,255,0.04),rgba(255,255,255,0.01))',
+                  overflow: 'hidden',
+                  minHeight: 300,
+                  display: 'flex',
+                  flexDirection: 'column',
+                  justifyContent: 'space-between',
+                  cursor: 'default',
+                }}
+              >
+                {/* Ghost number */}
+                <div style={{
+                  position: 'absolute', right: -12, bottom: -24,
+                  fontFamily: "'Sora',sans-serif", fontWeight: 800,
+                  fontSize: 'clamp(100px,14vw,160px)', lineHeight: 1,
+                  color: 'transparent',
+                  WebkitTextStroke: '1.5px rgba(142,134,242,0.1)',
+                  userSelect: 'none', pointerEvents: 'none',
+                  letterSpacing: '-0.04em',
+                }}>{n}</div>
+
+                <div>
+                  <span style={{ fontFamily: "'JetBrains Mono',monospace", fontSize: 11, letterSpacing: '0.22em', textTransform: 'uppercase', color: '#7E7AA0' }}>{label}</span>
+                  <h3 style={{ fontFamily: "'Sora',sans-serif", fontWeight: 400, fontSize: 'clamp(20px,2.2vw,28px)', lineHeight: 1.15, letterSpacing: '-0.015em', color: '#F1EFFA', margin: 'clamp(14px,2vw,22px) 0 0' }}>{title}</h3>
+                </div>
+
+                <div>
+                  <p style={{ fontFamily: "'DM Sans',sans-serif", fontSize: 15, lineHeight: 1.68, color: '#A09CBE', margin: '0 0 28px' }}>{body}</p>
+                  <Link href="/contact" style={{ textDecoration: 'none', display: 'inline-flex', alignItems: 'center', gap: 10, fontFamily: "'DM Sans',sans-serif", fontSize: 14.5, color: '#A99FFF', fontWeight: 500, transition: 'gap 0.2s' }}>
+                    Learn more
+                    <span style={{ width: 30, height: 30, borderRadius: '50%', background: 'linear-gradient(135deg,#7B6FFF,#6B63D8)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 14 }}>→</span>
+                  </Link>
+                </div>
+              </motion.div>
             ))}
-          </StaggerGroup>
+          </div>
         </section>
 
         {/* ── DIFFERENTIATOR ── */}
