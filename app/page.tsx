@@ -261,24 +261,26 @@ export default function HomePage() {
                 transition={{ duration: 0.6, delay: i * 0.15, ease: [0.25, 0.1, 0.25, 1] }}
                 style={{
                   flex: 1,
-                  marginTop: i === 0 ? 0 : i === 1 ? 'clamp(60px,10vw,140px)' : 'clamp(120px,20vw,280px)',
+                  marginTop: i === 0 ? 0 : i === 1 ? 'clamp(30px,4vw,60px)' : 'clamp(60px,8vw,120px)',
                   position: 'relative',
+                  overflow: 'hidden',
                   paddingLeft: i > 0 ? 'clamp(24px,3vw,40px)' : 0,
                   paddingRight: i < 2 ? 'clamp(24px,3vw,40px)' : 0,
+                  paddingTop: 'clamp(80px,10vw,120px)',
                   borderLeft: i > 0 ? '1px solid rgba(142,134,242,0.12)' : 'none',
                 }}
               >
-                {/* Ghost number — positioned top-right of each column */}
+                {/* Ghost number — top-right of each column */}
                 <div style={{
                   position: 'absolute',
-                  top: -40,
+                  top: -10,
                   right: i < 2 ? 'clamp(24px,3vw,40px)' : 0,
                   fontFamily: "'Sora',sans-serif", fontWeight: 800,
-                  fontSize: 'clamp(120px,18vw,220px)', lineHeight: 1,
-                  color: 'transparent',
-                  WebkitTextStroke: '1px rgba(142,134,242,0.09)',
+                  fontSize: 'clamp(100px,14vw,180px)', lineHeight: 1,
+                  color: 'rgba(255,255,255,0.06)',
                   userSelect: 'none', pointerEvents: 'none',
                   letterSpacing: '-0.06em',
+                  transform: 'rotate(-8deg)',
                   zIndex: 0,
                 }}>{n}</div>
 
