@@ -1,9 +1,9 @@
-import type { Metadata } from 'next';
+'use client';
 import Link from 'next/link';
 import Nav from '@/components/Nav';
 import Footer from '@/components/Footer';
+import { motion } from 'framer-motion';
 
-export const metadata: Metadata = { title: 'Collaborations — Kaysa Creative' };
 
 export default function CollaborationsPage() {
   return (
@@ -99,15 +99,19 @@ export default function CollaborationsPage() {
 
         {/* CLOSING CTA */}
         <section style={{ maxWidth: 1240, margin: '0 auto', padding: 'clamp(70px,10vh,120px) clamp(20px,5vw,48px) clamp(80px,11vh,120px)' }}>
-          <div style={{ position: 'relative', overflow: 'hidden', borderRadius: 30, border: '1px solid rgba(142,134,242,0.26)', padding: 'clamp(48px,7vw,80px) clamp(28px,5vw,64px)', textAlign: 'center', background: 'linear-gradient(160deg,rgba(107,99,216,0.22),rgba(30,26,64,0.4))' }}>
-            <div style={{ position: 'absolute', inset: 0, opacity: 0.6, background: 'radial-gradient(50% 100% at 50% 0%, rgba(169,159,255,0.3), transparent 70%)', pointerEvents: 'none' }} />
+          <motion.div whileHover={{ scale: 1.005 }} style={{ position: 'relative', overflow: 'hidden', borderRadius: 30, border: '1px solid rgba(142,134,242,0.26)', padding: 'clamp(48px,7vw,90px) clamp(28px,5vw,64px)', textAlign: 'center', background: 'rgba(12,10,28,0.85)' }}>
+            <div style={{ position: 'absolute', width: 420, height: 420, borderRadius: '50%', left: '-8%', top: '-30%', background: 'radial-gradient(circle, rgba(107,99,216,0.45) 0%, transparent 70%)', pointerEvents: 'none', filter: 'blur(40px)' }} />
+            <div style={{ position: 'absolute', width: 340, height: 340, borderRadius: '50%', left: '50%', top: '-40%', transform: 'translateX(-50%)', background: 'radial-gradient(circle, rgba(80,195,255,0.3) 0%, transparent 70%)', pointerEvents: 'none', filter: 'blur(50px)' }} />
+            <div style={{ position: 'absolute', width: 380, height: 380, borderRadius: '50%', right: '-6%', bottom: '-30%', background: 'radial-gradient(circle, rgba(201,111,232,0.38) 0%, transparent 70%)', pointerEvents: 'none', filter: 'blur(44px)' }} />
             <div style={{ position: 'relative' }}>
               <span style={{ fontFamily: "'JetBrains Mono',monospace", fontSize: 12, letterSpacing: '0.26em', textTransform: 'uppercase', color: '#A99FFF' }}>Get Started</span>
-              <h2 style={{ fontFamily: "'Sora',sans-serif", fontWeight: 400, fontSize: 'clamp(28px,3.8vw,48px)', lineHeight: 1.07, letterSpacing: '-0.02em', margin: '18px auto 22px', maxWidth: 680, color: '#F4F2FC' }}>Let&apos;s build trust, together.</h2>
-              <p style={{ fontFamily: "'DM Sans',sans-serif", fontSize: 16, lineHeight: 1.65, color: '#BDB9D6', maxWidth: 600, margin: '0 auto 36px' }}>At Kaysa, it's not about the masses — it's about the match. Together, we're building a new era of credible influence in the world of crypto and Web3.</p>
-              <Link href="/contact" className="btn-primary" style={{ fontSize: 16, fontWeight: 600, padding: '17px 38px', borderRadius: 14, textDecoration: 'none', display: 'inline-block' }}>Set Up a Free Consultation →</Link>
+              <h2 style={{ fontFamily: "'Sora',sans-serif", fontWeight: 400, fontSize: 'clamp(30px,4.6vw,60px)', lineHeight: 1.05, letterSpacing: '-0.025em', margin: '18px auto 22px', maxWidth: 780, color: '#F4F2FC' }}>Let&apos;s build trust, together.</h2>
+              <p style={{ fontFamily: "'DM Sans',sans-serif", fontSize: 16, lineHeight: 1.6, color: '#BDB9D6', maxWidth: 560, margin: '0 auto 36px' }}>At Kaysa, it&apos;s not about the masses — it&apos;s about the match. Together, we&apos;re building a new era of credible influence in the world of crypto and Web3.</p>
+              <Link href="/contact">
+                <motion.span className="btn-primary" whileHover={{ scale: 1.05, boxShadow: '0 24px 64px rgba(107,99,216,0.8)' }} whileTap={{ scale: 0.97 }} style={{ display: 'inline-block', fontSize: 16, fontWeight: 500, padding: '17px 40px', borderRadius: 14 }}>Set Up a Free Consultation →</motion.span>
+              </Link>
             </div>
-          </div>
+          </motion.div>
         </section>
       </main>
       <Footer />

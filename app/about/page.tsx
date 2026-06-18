@@ -131,22 +131,18 @@ export default function AboutPage() {
           </div>
 
           <FadeUp style={{ marginTop: 'clamp(60px,9vh,100px)' }}>
-            <motion.div
-              whileHover={{ scale: 1.01 }}
-              style={{ position: 'relative', overflow: 'hidden', borderRadius: 28, border: '1px solid rgba(142,134,242,0.24)', padding: 'clamp(40px,6vw,64px)', textAlign: 'center', background: 'linear-gradient(135deg,rgba(107,99,216,0.20),rgba(40,34,80,0.30))' }}
-            >
-              <div style={{ position: 'absolute', inset: 0, opacity: 0.5, background: 'radial-gradient(60% 120% at 50% 0%, rgba(169,159,255,0.25), transparent 70%)', pointerEvents: 'none' }} />
-              <h2 style={{ position: 'relative', fontFamily: "'Sora',sans-serif", fontWeight: 400, fontSize: 'clamp(28px,3.8vw,48px)', lineHeight: 1.07, letterSpacing: '-0.02em', margin: '0 auto 24px', maxWidth: 640, color: '#F4F2FC' }}>Ready to build something credible?</h2>
-              <Link href="/contact">
-                <motion.span
-                  className="btn-primary"
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.97 }}
-                  style={{ position: 'relative', display: 'inline-block', fontSize: 15.5, padding: '15px 34px', borderRadius: 13 }}
-                >
-                  Get in touch →
-                </motion.span>
-              </Link>
+            <motion.div whileHover={{ scale: 1.005 }} style={{ position: 'relative', overflow: 'hidden', borderRadius: 30, border: '1px solid rgba(142,134,242,0.26)', padding: 'clamp(48px,7vw,90px) clamp(28px,5vw,64px)', textAlign: 'center', background: 'rgba(12,10,28,0.85)' }}>
+              <div style={{ position: 'absolute', width: 420, height: 420, borderRadius: '50%', left: '-8%', top: '-30%', background: 'radial-gradient(circle, rgba(107,99,216,0.45) 0%, transparent 70%)', pointerEvents: 'none', filter: 'blur(40px)' }} />
+              <div style={{ position: 'absolute', width: 340, height: 340, borderRadius: '50%', left: '50%', top: '-40%', transform: 'translateX(-50%)', background: 'radial-gradient(circle, rgba(80,195,255,0.3) 0%, transparent 70%)', pointerEvents: 'none', filter: 'blur(50px)' }} />
+              <div style={{ position: 'absolute', width: 380, height: 380, borderRadius: '50%', right: '-6%', bottom: '-30%', background: 'radial-gradient(circle, rgba(201,111,232,0.38) 0%, transparent 70%)', pointerEvents: 'none', filter: 'blur(44px)' }} />
+              <div style={{ position: 'relative' }}>
+                <span style={{ fontFamily: "'JetBrains Mono',monospace", fontSize: 12, letterSpacing: '0.26em', textTransform: 'uppercase', color: '#A99FFF' }}>Get Started</span>
+                <h2 style={{ fontFamily: "'Sora',sans-serif", fontWeight: 400, fontSize: 'clamp(30px,4.6vw,60px)', lineHeight: 1.05, letterSpacing: '-0.025em', margin: '18px auto 22px', maxWidth: 780, color: '#F4F2FC' }}>Ready to build something credible?</h2>
+                <p style={{ fontFamily: "'DM Sans',sans-serif", fontSize: 16, lineHeight: 1.6, color: '#BDB9D6', maxWidth: 560, margin: '0 auto 36px' }}>Let&apos;s connect your brand with the right voices — verified, authentic, and aligned with your vision.</p>
+                <Link href="/contact">
+                  <motion.span className="btn-primary" whileHover={{ scale: 1.05, boxShadow: '0 24px 64px rgba(107,99,216,0.8)' }} whileTap={{ scale: 0.97 }} style={{ display: 'inline-block', fontSize: 16, fontWeight: 500, padding: '17px 40px', borderRadius: 14 }}>Get in touch →</motion.span>
+                </Link>
+              </div>
             </motion.div>
           </FadeUp>
         </section>
