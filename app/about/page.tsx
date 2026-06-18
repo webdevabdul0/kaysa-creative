@@ -83,23 +83,52 @@ export default function AboutPage() {
         {/* OUR STRENGTH */}
         <section style={{ maxWidth: 1240, margin: '0 auto', padding: 'clamp(60px,9vh,110px) clamp(20px,5vw,48px) clamp(80px,11vh,120px)' }}>
           <FadeUp>
-            <h2 style={{ fontFamily: "'Sora',sans-serif", fontWeight: 700, fontSize: 'clamp(28px,3.6vw,46px)', lineHeight: 1.08, letterSpacing: '-0.02em', margin: '0 0 40px', color: '#F1EFFA' }}>Our Strength</h2>
+            <h2 style={{ fontFamily: "'Sora',sans-serif", fontWeight: 400, fontSize: 'clamp(28px,3.6vw,46px)', lineHeight: 1.08, letterSpacing: '-0.02em', margin: '0 0 clamp(48px,8vh,96px)', color: '#F1EFFA' }}>Our Strength</h2>
           </FadeUp>
-          <StaggerGroup style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit,minmax(280px,1fr))', gap: 20 }}>
+
+          <div className="stagger-cards" style={{ position: 'relative', display: 'flex', alignItems: 'flex-start' }}>
             {[
-              { n: '01', title: 'Due Diligence', body: "Every token, NFT, or Web3 project we promote is verified for authenticity, transparency, and long-term potential." },
-              { n: '02', title: 'Selective Partnerships', body: "We only work with influencers who have a proven track record of integrity and engagement." },
-              { n: '03', title: 'Full-Service Marketing', body: "From strategy and content creation to influencer activation and storytelling — we build trust, not just reach." },
-            ].map(({ n, title, body }) => (
-              <StaggerItem key={n}>
-                <motion.div className="card" whileHover={{ y: -6 }} transition={{ type: 'spring', stiffness: 300 }} style={{ padding: 32, borderRadius: 20, height: '100%' }}>
-                  <div style={{ width: 48, height: 48, borderRadius: 13, display: 'flex', alignItems: 'center', justifyContent: 'center', background: 'rgba(107,99,216,0.16)', border: '1px solid rgba(142,134,242,0.28)', marginBottom: 22, fontFamily: "'JetBrains Mono',monospace", color: '#A99FFF', fontSize: 18 }}>{n}</div>
-                  <h3 style={{ fontFamily: "'Sora',sans-serif", fontWeight: 600, fontSize: 20, color: '#F1EFFA', margin: '0 0 12px' }}>{title}</h3>
-                  <p style={{ fontFamily: "'DM Sans',sans-serif", fontSize: 15, lineHeight: 1.62, color: '#A09CBE', margin: 0 }}>{body}</p>
-                </motion.div>
-              </StaggerItem>
+              { n: '01', label: 'Verification', title: 'Due Diligence', body: "Every token, NFT, or Web3 project we promote is verified for authenticity, transparency, and long-term potential." },
+              { n: '02', label: 'Our Network', title: 'Selective Partnerships', body: "We only work with influencers who have a proven track record of integrity and engagement." },
+              { n: '03', label: 'End-to-End', title: 'Full-Service Marketing', body: "From strategy and content creation to influencer activation and storytelling — we build trust, not just reach." },
+            ].map(({ n, label, title, body }, i) => (
+              <motion.div
+                key={n}
+                initial={{ opacity: 0, y: 50 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: '-60px' }}
+                transition={{ duration: 0.7, delay: i * 0.18, ease: [0.25, 0.1, 0.25, 1] }}
+                style={{
+                  flex: 1,
+                  position: 'relative',
+                  paddingLeft: i > 0 ? 'clamp(24px,3vw,48px)' : 0,
+                  paddingRight: i < 2 ? 'clamp(24px,3vw,48px)' : 0,
+                  paddingTop: 'clamp(70px,8vw,100px)',
+                  paddingBottom: 'clamp(32px,5vh,56px)',
+                  borderLeft: i > 0 ? '1px solid rgba(142,134,242,0.12)' : 'none',
+                }}
+              >
+                {/* Ghost number */}
+                <div style={{
+                  position: 'absolute',
+                  top: -10,
+                  right: i < 2 ? 'clamp(20px,4vw,50px)' : 20,
+                  fontFamily: "'Sora',sans-serif", fontWeight: 800,
+                  fontSize: 'clamp(70px,9vw,120px)', lineHeight: 1,
+                  color: 'rgba(255,255,255,0.06)',
+                  userSelect: 'none', pointerEvents: 'none',
+                  letterSpacing: '-0.06em',
+                  zIndex: 0,
+                }}>{n}</div>
+
+                <div style={{ position: 'relative', zIndex: 1 }}>
+                  <span style={{ fontFamily: "'JetBrains Mono',monospace", fontSize: 11, letterSpacing: '0.22em', textTransform: 'uppercase', color: '#7E7AA0' }}>{label}</span>
+                  <h3 style={{ fontFamily: "'Sora',sans-serif", fontWeight: 400, fontSize: 'clamp(22px,2.4vw,32px)', lineHeight: 1.12, letterSpacing: '-0.02em', color: '#F1EFFA', margin: '18px 0 clamp(20px,3vh,36px)' }}>{title}</h3>
+                  <p style={{ fontFamily: "'DM Sans',sans-serif", fontSize: 15, lineHeight: 1.72, color: '#A09CBE', margin: 0, maxWidth: 340 }}>{body}</p>
+                </div>
+              </motion.div>
             ))}
-          </StaggerGroup>
+          </div>
 
           <FadeUp style={{ marginTop: 'clamp(60px,9vh,100px)' }}>
             <motion.div
