@@ -241,13 +241,13 @@ export default function HomePage() {
 
         {/* ── WHAT WE DO ── */}
         <section style={{ maxWidth: 1240, margin: '0 auto', padding: 'clamp(140px,16vh,200px) clamp(20px,5vw,48px) 0' }}>
-          <FadeUp style={{ textAlign: 'center', marginBottom: 'clamp(48px,7vh,80px)' }}>
-            <SectionLabel text="What We Do" />
-            <h2 style={{ fontFamily: "'Sora',sans-serif", fontWeight: 400, fontSize: 'clamp(32px,4.2vw,58px)', lineHeight: 1.06, letterSpacing: '-0.025em', margin: '0 auto', maxWidth: 700, color: '#F1EFFA' }}>Everything you need to grow with credibility.</h2>
+          <FadeUp><SectionLabel text="What We Do" /></FadeUp>
+          <FadeUp delay={0.1}>
+            <h2 style={{ fontFamily: "'Sora',sans-serif", fontWeight: 400, fontSize: 'clamp(28px,3.6vw,46px)', lineHeight: 1.08, letterSpacing: '-0.02em', margin: '0 0 clamp(48px,8vh,96px)', maxWidth: 680, color: '#F1EFFA' }}>Everything you need to grow with credibility.</h2>
           </FadeUp>
 
-          {/* Staggered cards */}
-          <div className="stagger-cards" style={{ display: 'flex', gap: 'clamp(16px,3vw,32px)', alignItems: 'flex-start' }}>
+          {/* Staggered columns — ghost numbers behind, no card bg */}
+          <div className="stagger-cards" style={{ position: 'relative', display: 'flex', alignItems: 'flex-start' }}>
             {[
               { n: '01', label: 'For Brands & Projects', title: 'Influencer Matchmaking', body: "We connect your brand with verified influencers who align with your voice, audience, and values. No noise — just the right fit." },
               { n: '02', label: 'Strategy & Execution', title: 'Campaign Strategy', body: "We craft tailor-made campaigns to launch, scale or reposition your business — from concept to live content, handled end-to-end." },
@@ -259,44 +259,36 @@ export default function HomePage() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.6, delay: i * 0.15, ease: [0.25, 0.1, 0.25, 1] }}
-                whileHover={{ y: -6 }}
                 style={{
                   flex: 1,
-                  marginTop: i === 0 ? 0 : i === 1 ? 'clamp(32px,5vw,64px)' : 'clamp(64px,10vw,128px)',
+                  marginTop: i === 0 ? 0 : i === 1 ? 'clamp(60px,10vw,140px)' : 'clamp(120px,20vw,280px)',
                   position: 'relative',
-                  padding: 'clamp(28px,3.5vw,44px)',
-                  borderRadius: 24,
-                  border: '1px solid rgba(142,134,242,0.14)',
-                  background: 'linear-gradient(160deg,rgba(255,255,255,0.04),rgba(255,255,255,0.01))',
-                  overflow: 'hidden',
-                  minHeight: 300,
-                  display: 'flex',
-                  flexDirection: 'column',
-                  justifyContent: 'space-between',
-                  cursor: 'default',
+                  paddingLeft: i > 0 ? 'clamp(24px,3vw,40px)' : 0,
+                  paddingRight: i < 2 ? 'clamp(24px,3vw,40px)' : 0,
+                  borderLeft: i > 0 ? '1px solid rgba(142,134,242,0.12)' : 'none',
                 }}
               >
-                {/* Ghost number */}
+                {/* Ghost number — positioned top-right of each column */}
                 <div style={{
-                  position: 'absolute', right: -12, bottom: -24,
+                  position: 'absolute',
+                  top: -40,
+                  right: i < 2 ? 'clamp(24px,3vw,40px)' : 0,
                   fontFamily: "'Sora',sans-serif", fontWeight: 800,
-                  fontSize: 'clamp(100px,14vw,160px)', lineHeight: 1,
+                  fontSize: 'clamp(120px,18vw,220px)', lineHeight: 1,
                   color: 'transparent',
-                  WebkitTextStroke: '1.5px rgba(142,134,242,0.1)',
+                  WebkitTextStroke: '1px rgba(142,134,242,0.09)',
                   userSelect: 'none', pointerEvents: 'none',
-                  letterSpacing: '-0.04em',
+                  letterSpacing: '-0.06em',
+                  zIndex: 0,
                 }}>{n}</div>
 
-                <div>
+                <div style={{ position: 'relative', zIndex: 1 }}>
                   <span style={{ fontFamily: "'JetBrains Mono',monospace", fontSize: 11, letterSpacing: '0.22em', textTransform: 'uppercase', color: '#7E7AA0' }}>{label}</span>
-                  <h3 style={{ fontFamily: "'Sora',sans-serif", fontWeight: 400, fontSize: 'clamp(20px,2.2vw,28px)', lineHeight: 1.15, letterSpacing: '-0.015em', color: '#F1EFFA', margin: 'clamp(14px,2vw,22px) 0 0' }}>{title}</h3>
-                </div>
-
-                <div>
-                  <p style={{ fontFamily: "'DM Sans',sans-serif", fontSize: 15, lineHeight: 1.68, color: '#A09CBE', margin: '0 0 28px' }}>{body}</p>
-                  <Link href="/contact" style={{ textDecoration: 'none', display: 'inline-flex', alignItems: 'center', gap: 10, fontFamily: "'DM Sans',sans-serif", fontSize: 14.5, color: '#A99FFF', fontWeight: 500, transition: 'gap 0.2s' }}>
+                  <h3 style={{ fontFamily: "'Sora',sans-serif", fontWeight: 400, fontSize: 'clamp(22px,2.4vw,32px)', lineHeight: 1.12, letterSpacing: '-0.02em', color: '#F1EFFA', margin: '18px 0 clamp(20px,3vh,36px)' }}>{title}</h3>
+                  <p style={{ fontFamily: "'DM Sans',sans-serif", fontSize: 15, lineHeight: 1.72, color: '#A09CBE', margin: '0 0 32px', maxWidth: 340 }}>{body}</p>
+                  <Link href="/contact" style={{ textDecoration: 'none', display: 'inline-flex', alignItems: 'center', gap: 10, fontFamily: "'DM Sans',sans-serif", fontSize: 14.5, color: '#A99FFF', fontWeight: 500 }}>
                     Learn more
-                    <span style={{ width: 30, height: 30, borderRadius: '50%', background: 'linear-gradient(135deg,#7B6FFF,#6B63D8)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 14 }}>→</span>
+                    <span style={{ width: 30, height: 30, borderRadius: '50%', background: 'linear-gradient(135deg,#7B6FFF,#6B63D8)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 13, color: '#fff' }}>→</span>
                   </Link>
                 </div>
               </motion.div>
