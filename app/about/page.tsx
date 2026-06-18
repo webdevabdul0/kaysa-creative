@@ -56,28 +56,98 @@ export default function AboutPage() {
 
         {/* MISSION & VISION */}
         <section style={{ maxWidth: 1240, margin: '0 auto', padding: 'clamp(60px,9vh,110px) clamp(20px,5vw,48px) 0' }}>
-          <StaggerGroup style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit,minmax(320px,1fr))', gap: 20 }}>
-            <StaggerItem>
-              <motion.div
-                whileHover={{ y: -4 }}
-                style={{ padding: 38, borderRadius: 24, border: '1px solid rgba(142,134,242,0.16)', background: 'linear-gradient(180deg,rgba(255,255,255,0.04),rgba(255,255,255,0.012))', height: '100%' }}
-              >
-                <h3 style={{ fontFamily: "'Sora',sans-serif", fontWeight: 400, fontSize: 26, color: '#F1EFFA', margin: '0 0 20px' }}>Mission</h3>
-                <p style={{ fontFamily: "'DM Sans',sans-serif", fontSize: 15, lineHeight: 1.68, color: '#A6A2C2', margin: '0 0 16px' }}>Kaysa specializes in crypto marketing with one clear goal: to connect verified projects with influential creators who make a genuine impact.</p>
-                <p style={{ fontFamily: "'DM Sans',sans-serif", fontSize: 15, lineHeight: 1.68, color: '#A6A2C2', margin: '0 0 16px' }}>Every project we represent undergoes a thorough vetting process — from tokenomics to team background — before being introduced to our influencer network.</p>
-                <p style={{ fontFamily: "'DM Sans',sans-serif", fontSize: 15, lineHeight: 1.68, color: '#A6A2C2', margin: 0 }}>We apply the same standards to our influencers. Only those who truly understand their audience, communicate authentically, and share our values are invited to join.</p>
-              </motion.div>
-            </StaggerItem>
-            <StaggerItem>
-              <motion.div
-                whileHover={{ y: -4 }}
-                style={{ padding: 38, borderRadius: 24, border: '1px solid rgba(142,134,242,0.24)', background: 'linear-gradient(160deg,rgba(107,99,216,0.18),rgba(30,26,64,0.3))', display: 'flex', flexDirection: 'column', justifyContent: 'center', height: '100%' }}
-              >
-                <h3 style={{ fontFamily: "'Sora',sans-serif", fontWeight: 400, fontSize: 26, color: '#F4F2FC', margin: '0 0 20px' }}>Vision</h3>
-                <p style={{ fontFamily: "'DM Sans',sans-serif", fontSize: 17, lineHeight: 1.7, color: '#D9D5EE', margin: 0 }}>Our vision is to be the trusted global partner for innovation and growth, where strategy meets creativity and every collaboration retains a personal, human touch.</p>
-              </motion.div>
-            </StaggerItem>
-          </StaggerGroup>
+
+          {/* MISSION — images left, content right */}
+          <motion.div
+            initial={{ opacity: 0, y: 40 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.7, ease: [0.25,0.1,0.25,1] }}
+            style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit,minmax(300px,1fr))', gap: 'clamp(32px,6vw,80px)', alignItems: 'center', marginBottom: 'clamp(80px,12vh,140px)' }}
+          >
+            {/* Image collage */}
+            <div style={{ position: 'relative', height: 'clamp(320px,40vw,480px)' }}>
+              {/* Background image */}
+              <div style={{ position: 'absolute', top: 0, left: 0, width: '75%', height: '75%', borderRadius: 20, overflow: 'hidden', border: '1px solid rgba(142,134,242,0.16)', background: 'linear-gradient(135deg,rgba(107,99,216,0.18),rgba(30,26,64,0.3))' }}>
+                <div style={{ width: '100%', height: '100%', background: 'repeating-linear-gradient(135deg,rgba(107,99,216,0.08) 0 12px,rgba(107,99,216,0.02) 12px 24px)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                  <span style={{ fontFamily: "'JetBrains Mono',monospace", fontSize: 11, letterSpacing: '0.2em', color: '#6B67A0' }}>VISUAL PLACEHOLDER</span>
+                </div>
+              </div>
+              {/* Foreground image */}
+              <div style={{ position: 'absolute', bottom: 0, right: 0, width: '55%', height: '60%', borderRadius: 20, overflow: 'hidden', border: '1px solid rgba(142,134,242,0.22)', background: 'linear-gradient(160deg,rgba(107,99,216,0.25),rgba(40,34,80,0.4))' }}>
+                <div style={{ width: '100%', height: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                  <span style={{ fontFamily: "'JetBrains Mono',monospace", fontSize: 11, letterSpacing: '0.2em', color: '#A99FFF' }}>VISUAL</span>
+                </div>
+              </div>
+              {/* Accent dot */}
+              <div style={{ position: 'absolute', top: '72%', left: '20%', width: 14, height: 14, borderRadius: '50%', background: '#8E86F2', boxShadow: '0 0 20px rgba(142,134,242,0.7)' }} />
+            </div>
+
+            {/* Content */}
+            <div>
+              <div style={{ display: 'flex', alignItems: 'center', gap: 11, marginBottom: 20 }}>
+                <span style={{ width: 7, height: 7, borderRadius: 2, background: '#8E86F2', boxShadow: '0 0 12px #6B63D8' }} />
+                <span style={{ fontFamily: "'JetBrains Mono',monospace", fontSize: 12, letterSpacing: '0.24em', textTransform: 'uppercase' as const, color: '#8E86F2' }}>Our Mission</span>
+              </div>
+              <h2 style={{ fontFamily: "'Sora',sans-serif", fontWeight: 400, fontSize: 'clamp(28px,3.8vw,48px)', lineHeight: 1.07, letterSpacing: '-0.02em', margin: '0 0 24px', color: '#F1EFFA' }}>Mission</h2>
+              <p style={{ fontFamily: "'DM Sans',sans-serif", fontSize: 15.5, lineHeight: 1.72, color: '#A6A2C2', margin: '0 0 28px' }}>Kaysa specializes in crypto marketing with one clear goal: to connect verified projects with influential creators who make a genuine impact. Every project we represent undergoes a thorough vetting process — from tokenomics to team background — before being introduced to our influencer network.</p>
+              <div style={{ display: 'flex', flexDirection: 'column', gap: 14 }}>
+                {[
+                  'Verified projects, end-to-end',
+                  'Influencers screened for authenticity',
+                  'Shared values, not just reach',
+                  'Transparent, trust-first process',
+                ].map(item => (
+                  <div key={item} style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
+                    <span style={{ width: 22, height: 22, borderRadius: 6, flex: 'none', background: 'linear-gradient(135deg,#A99FFF,#6B63D8)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 12, color: '#fff' }}>✓</span>
+                    <span style={{ fontFamily: "'DM Sans',sans-serif", fontSize: 15, color: '#CFCBE4' }}>{item}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </motion.div>
+
+          {/* VISION — content left, images right */}
+          <motion.div
+            initial={{ opacity: 0, y: 40 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.7, delay: 0.1, ease: [0.25,0.1,0.25,1] }}
+            style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit,minmax(300px,1fr))', gap: 'clamp(32px,6vw,80px)', alignItems: 'center' }}
+          >
+            {/* Content */}
+            <div>
+              <div style={{ display: 'flex', alignItems: 'center', gap: 11, marginBottom: 20 }}>
+                <span style={{ width: 7, height: 7, borderRadius: 2, background: '#8E86F2', boxShadow: '0 0 12px #6B63D8' }} />
+                <span style={{ fontFamily: "'JetBrains Mono',monospace", fontSize: 12, letterSpacing: '0.24em', textTransform: 'uppercase' as const, color: '#8E86F2' }}>Our Vision</span>
+              </div>
+              <h2 style={{ fontFamily: "'Sora',sans-serif", fontWeight: 400, fontSize: 'clamp(28px,3.8vw,48px)', lineHeight: 1.07, letterSpacing: '-0.02em', margin: '0 0 24px', color: '#F1EFFA' }}>Vision</h2>
+              <p style={{ fontFamily: "'DM Sans',sans-serif", fontSize: 15.5, lineHeight: 1.72, color: '#A6A2C2', margin: '0 0 28px' }}>Our vision is to be the trusted global partner for innovation and growth, where strategy meets creativity and every collaboration retains a personal, human touch.</p>
+              <div style={{ display: 'flex', flexDirection: 'column', gap: 14 }}>
+                {[
+                  'Inspiring credible influence globally',
+                  'Strategy meets creativity',
+                  'Human touch in every partnership',
+                  'Building the future of Web3 trust',
+                ].map(item => (
+                  <div key={item} style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
+                    <span style={{ width: 22, height: 22, borderRadius: 6, flex: 'none', background: 'linear-gradient(135deg,#A99FFF,#6B63D8)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 12, color: '#fff' }}>✓</span>
+                    <span style={{ fontFamily: "'DM Sans',sans-serif", fontSize: 15, color: '#CFCBE4' }}>{item}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            {/* Image collage */}
+            <div style={{ position: 'relative', height: 'clamp(320px,40vw,480px)' }}>
+              <div style={{ position: 'absolute', top: 0, right: 0, width: '75%', height: '75%', borderRadius: 20, overflow: 'hidden', border: '1px solid rgba(142,134,242,0.16)', background: 'linear-gradient(135deg,rgba(107,99,216,0.18),rgba(30,26,64,0.3))' }}>
+                <div style={{ width: '100%', height: '100%', background: 'repeating-linear-gradient(135deg,rgba(107,99,216,0.08) 0 12px,rgba(107,99,216,0.02) 12px 24px)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                  <span style={{ fontFamily: "'JetBrains Mono',monospace", fontSize: 11, letterSpacing: '0.2em', color: '#6B67A0' }}>VISUAL PLACEHOLDER</span>
+                </div>
+              </div>
+              <div style={{ position: 'absolute', bottom: 0, left: 0, width: '55%', height: '60%', borderRadius: 20, overflow: 'hidden', border: '1px solid rgba(142,134,242,0.22)', background: 'linear-gradient(160deg,rgba(107,99,216,0.25),rgba(40,34,80,0.4))' }}>
+                <div style={{ width: '100%', height: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                  <span style={{ fontFamily: "'JetBrains Mono',monospace", fontSize: 11, letterSpacing: '0.2em', color: '#A99FFF' }}>VISUAL</span>
+                </div>
+              </div>
+              <div style={{ position: 'absolute', top: '72%', right: '20%', width: 14, height: 14, borderRadius: '50%', background: '#8E86F2', boxShadow: '0 0 20px rgba(142,134,242,0.7)' }} />
+            </div>
+          </motion.div>
+
         </section>
 
         {/* OUR STRENGTH */}
