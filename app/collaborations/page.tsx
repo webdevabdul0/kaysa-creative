@@ -26,7 +26,7 @@ export default function CollaborationsPage() {
 
         {/* INTRO */}
         <section style={{ maxWidth: 900, margin: '0 auto', padding: 'clamp(40px,6vh,80px) clamp(20px,5vw,48px) 0', textAlign: 'center' }}>
-          <h2 style={{ fontFamily: "'Sora',sans-serif", fontWeight: 700, fontSize: 'clamp(26px,3.4vw,44px)', lineHeight: 1.1, letterSpacing: '-0.02em', margin: '0 0 24px', color: '#F1EFFA' }}>Building Credible Influence Together</h2>
+          <h2 style={{ fontFamily: "'Sora',sans-serif", fontWeight: 400, fontSize: 'clamp(28px,3.8vw,48px)', lineHeight: 1.07, letterSpacing: '-0.02em', margin: '0 0 24px', color: '#F1EFFA' }}>Building Credible Influence Together</h2>
           <p style={{ fontFamily: "'DM Sans',sans-serif", fontSize: 16.5, lineHeight: 1.7, color: '#A6A2C2', margin: '0 0 16px' }}>Whether you're a crypto or Web3 project seeking authentic visibility, or an influencer looking to collaborate with verified brands — Kaysa is your partner for sustainable growth.</p>
           <p style={{ fontFamily: "'DM Sans',sans-serif", fontSize: 16.5, lineHeight: 1.7, color: '#A6A2C2', margin: 0 }}>We believe the best collaborations are built on trust, transparency, and shared values. That's why we only connect partners who truly align.</p>
         </section>
@@ -64,23 +64,36 @@ export default function CollaborationsPage() {
 
         {/* RECENT COLLABS BENTO */}
         <section style={{ maxWidth: 1240, margin: '0 auto', padding: 'clamp(60px,9vh,110px) clamp(20px,5vw,48px) 0' }}>
-          <h2 style={{ fontFamily: "'Sora',sans-serif", fontWeight: 700, fontSize: 'clamp(24px,3vw,38px)', lineHeight: 1.1, letterSpacing: '-0.02em', margin: '0 0 36px', color: '#F1EFFA' }}>Recent collaborations</h2>
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(6,1fr)', gridAutoRows: 190, gap: 18 }}>
-            <div style={{ gridColumn: 'span 3', gridRow: 'span 2', position: 'relative', overflow: 'hidden', borderRadius: 22, border: '1px solid rgba(142,134,242,0.14)', background: 'repeating-linear-gradient(135deg,rgba(107,99,216,0.10) 0 14px,rgba(107,99,216,0.04) 14px 28px)', display: 'flex', flexDirection: 'column', justifyContent: 'flex-end', padding: 30 }}>
-              <span style={{ fontFamily: "'JetBrains Mono',monospace", fontSize: 11, letterSpacing: '0.2em', color: '#8A86AC', position: 'absolute', top: 24, left: 30 }}>project shot — replace</span>
-              <span style={{ fontFamily: "'JetBrains Mono',monospace", fontSize: 11, letterSpacing: '0.22em', textTransform: 'uppercase', color: '#A99FFF', marginBottom: 8 }}>Token Launch</span>
-              <h3 style={{ fontFamily: "'Sora',sans-serif", fontWeight: 600, fontSize: 22, color: '#F1EFFA', margin: 0 }}>A credible debut backed by real investors.</h3>
-            </div>
-            {[
-              { label: 'NFT Collection', title: 'Visibility with legitimacy.', span: 'span 3' },
-              { label: 'Creator Partnership', title: 'Aligned voices, authentic reach.', span: 'span 3' },
-            ].map(({ label, title, span }) => (
-              <div key={label} style={{ gridColumn: span, position: 'relative', overflow: 'hidden', borderRadius: 22, border: '1px solid rgba(142,134,242,0.14)', background: 'repeating-linear-gradient(135deg,rgba(142,134,242,0.08) 0 12px,rgba(142,134,242,0.02) 12px 24px)', display: 'flex', flexDirection: 'column', justifyContent: 'flex-end', padding: 26 }}>
-                <span style={{ fontFamily: "'JetBrains Mono',monospace", fontSize: 10.5, letterSpacing: '0.2em', color: '#8A86AC', position: 'absolute', top: 22, left: 26 }}>project shot</span>
-                <span style={{ fontFamily: "'JetBrains Mono',monospace", fontSize: 10.5, letterSpacing: '0.22em', textTransform: 'uppercase', color: '#A99FFF', marginBottom: 6 }}>{label}</span>
-                <h3 style={{ fontFamily: "'Sora',sans-serif", fontWeight: 600, fontSize: 18, color: '#F1EFFA', margin: 0 }}>{title}</h3>
+          <div style={{ display: 'inline-flex', alignItems: 'center', gap: 11, marginBottom: 22 }}>
+            <span style={{ width: 7, height: 7, borderRadius: 2, background: '#8E86F2', boxShadow: '0 0 12px #6B63D8' }} />
+            <span style={{ fontFamily: "'JetBrains Mono',monospace", fontSize: 12, letterSpacing: '0.24em', textTransform: 'uppercase' as const, color: '#8E86F2' }}>Featured Projects</span>
+          </div>
+          <h2 style={{ fontFamily: "'Sora',sans-serif", fontWeight: 400, fontSize: 'clamp(28px,3.8vw,48px)', lineHeight: 1.07, letterSpacing: '-0.02em', margin: '0 0 40px', color: '#F1EFFA' }}>Recent Collaborations</h2>
+          <div className="bento-6col" style={{ gridAutoRows: 200 }}>
+            <div style={{ gridColumn: 'span 4', gridRow: 'span 2', position: 'relative', overflow: 'hidden', borderRadius: 24, border: '1px solid rgba(142,134,242,0.18)' }}>
+              <div style={{ position: 'absolute', inset: 0, backgroundImage: 'url(/shotss.png)', backgroundSize: 'cover', backgroundPosition: 'center' }} />
+              <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to top, rgba(7,7,12,0.96) 0%, rgba(7,7,12,0.7) 40%, rgba(7,7,12,0.3) 70%, rgba(7,7,12,0.15) 100%)' }} />
+              <div style={{ position: 'absolute', bottom: 0, left: 0, right: 0, padding: 32 }}>
+                <span style={{ fontFamily: "'JetBrains Mono',monospace", fontSize: 11, letterSpacing: '0.22em', textTransform: 'uppercase', color: '#A99FFF', display: 'block', marginBottom: 10 }}>Blind Mint Protocol · DeFi NFT</span>
+                <h3 style={{ fontFamily: "'Sora',sans-serif", fontWeight: 400, fontSize: 'clamp(18px,2vw,26px)', color: '#F4F2FC', margin: '0 0 8px' }}>The Moonpot</h3>
+                <p style={{ fontFamily: "'DM Sans',sans-serif", fontSize: 14.5, lineHeight: 1.62, color: '#B0ACCC', margin: 0, maxWidth: 420 }}>A fully on-chain blind mint protocol where every TMP minted may drop a rare NFT linked to real USDC rewards — no presales, no team tokens, powered by Chainlink VRF randomness.</p>
               </div>
-            ))}
+              <a href="https://themoonpot.com/" target="_blank" rel="noopener noreferrer" style={{ position: 'absolute', top: 24, right: 24, fontFamily: "'JetBrains Mono',monospace", fontSize: 11, letterSpacing: '0.18em', color: '#8E86F2', textDecoration: 'none', border: '1px solid rgba(142,134,242,0.3)', padding: '6px 14px', borderRadius: 100, background: 'rgba(7,7,12,0.6)', backdropFilter: 'blur(8px)' }}>↗ Visit</a>
+            </div>
+            <div style={{ gridColumn: 'span 2', padding: 28, borderRadius: 24, border: '1px solid rgba(142,134,242,0.14)', background: 'linear-gradient(180deg,rgba(255,255,255,0.04),rgba(255,255,255,0.01))', display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
+              <span style={{ fontFamily: "'JetBrains Mono',monospace", fontSize: 11, letterSpacing: '0.2em', color: '#7E7AA0', textTransform: 'uppercase' }}>Smart Contracts</span>
+              <div>
+                <div style={{ fontFamily: "'Sora',sans-serif", fontWeight: 400, fontSize: 32, color: '#A99FFF', marginBottom: 6 }}>100%</div>
+                <div style={{ fontFamily: "'DM Sans',sans-serif", fontSize: 14, color: '#A09CBE' }}>Immutable, fully on-chain. No presales, no team tokens.</div>
+              </div>
+            </div>
+            <div style={{ gridColumn: 'span 2', padding: 28, borderRadius: 24, border: '1px solid rgba(142,134,242,0.22)', background: 'linear-gradient(135deg,rgba(107,99,216,0.18),rgba(107,99,216,0.04))', display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
+              <span style={{ fontFamily: "'JetBrains Mono',monospace", fontSize: 11, letterSpacing: '0.2em', color: '#A99FFF', textTransform: 'uppercase' }}>Randomness</span>
+              <div>
+                <div style={{ fontFamily: "'Sora',sans-serif", fontWeight: 400, fontSize: 22, color: '#F4F2FC', marginBottom: 6 }}>Chainlink VRF</div>
+                <div style={{ fontFamily: "'DM Sans',sans-serif", fontSize: 14, color: '#BCB7D8' }}>Verifiable on-chain NFT rarity. No manipulation possible.</div>
+              </div>
+            </div>
           </div>
         </section>
 
@@ -90,7 +103,7 @@ export default function CollaborationsPage() {
             <div style={{ position: 'absolute', inset: 0, opacity: 0.6, background: 'radial-gradient(50% 100% at 50% 0%, rgba(169,159,255,0.3), transparent 70%)', pointerEvents: 'none' }} />
             <div style={{ position: 'relative' }}>
               <span style={{ fontFamily: "'JetBrains Mono',monospace", fontSize: 12, letterSpacing: '0.26em', textTransform: 'uppercase', color: '#A99FFF' }}>Get Started</span>
-              <h2 style={{ fontFamily: "'Sora',sans-serif", fontWeight: 800, fontSize: 'clamp(28px,4.2vw,54px)', lineHeight: 1.06, letterSpacing: '-0.025em', margin: '18px auto 22px', maxWidth: 680, color: '#F4F2FC' }}>Let&apos;s build trust, together.</h2>
+              <h2 style={{ fontFamily: "'Sora',sans-serif", fontWeight: 400, fontSize: 'clamp(28px,3.8vw,48px)', lineHeight: 1.07, letterSpacing: '-0.02em', margin: '18px auto 22px', maxWidth: 680, color: '#F4F2FC' }}>Let&apos;s build trust, together.</h2>
               <p style={{ fontFamily: "'DM Sans',sans-serif", fontSize: 16, lineHeight: 1.65, color: '#BDB9D6', maxWidth: 600, margin: '0 auto 36px' }}>At Kaysa, it's not about the masses — it's about the match. Together, we're building a new era of credible influence in the world of crypto and Web3.</p>
               <Link href="/contact" className="btn-primary" style={{ fontSize: 16, fontWeight: 600, padding: '17px 38px', borderRadius: 14, textDecoration: 'none', display: 'inline-block' }}>Set Up a Free Consultation →</Link>
             </div>

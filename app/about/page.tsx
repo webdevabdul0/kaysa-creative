@@ -44,7 +44,7 @@ export default function AboutPage() {
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit,minmax(300px,1fr))', gap: 'clamp(32px,5vw,64px)', alignItems: 'start' }}>
             <FadeUp>
               <SectionLabel text="Our Approach" />
-              <h2 style={{ fontFamily: "'Sora',sans-serif", fontWeight: 700, fontSize: 'clamp(26px,3.2vw,42px)', lineHeight: 1.1, letterSpacing: '-0.02em', margin: 0, color: '#F1EFFA' }}>Kaysa Creative Marketing — Where Trust Meets Influence</h2>
+              <h2 style={{ fontFamily: "'Sora',sans-serif", fontWeight: 400, fontSize: 'clamp(28px,3.8vw,48px)', lineHeight: 1.07, letterSpacing: '-0.02em', margin: 0, color: '#F1EFFA' }}>Kaysa Creative Marketing — Where Trust Meets Influence</h2>
             </FadeUp>
             <FadeUp delay={0.15}>
               <p style={{ fontFamily: "'DM Sans',sans-serif", fontSize: 16, lineHeight: 1.72, color: '#A6A2C2', margin: '0 0 18px' }}>In a world that&apos;s evolving at lightning speed, the connection between brands, technology, and communities is being redefined. Crypto is no longer the future — it&apos;s the present. But with growth comes a major challenge: trust.</p>
@@ -62,7 +62,7 @@ export default function AboutPage() {
                 whileHover={{ y: -4 }}
                 style={{ padding: 38, borderRadius: 24, border: '1px solid rgba(142,134,242,0.16)', background: 'linear-gradient(180deg,rgba(255,255,255,0.04),rgba(255,255,255,0.012))', height: '100%' }}
               >
-                <h3 style={{ fontFamily: "'Sora',sans-serif", fontWeight: 700, fontSize: 26, color: '#F1EFFA', margin: '0 0 20px' }}>Mission</h3>
+                <h3 style={{ fontFamily: "'Sora',sans-serif", fontWeight: 400, fontSize: 26, color: '#F1EFFA', margin: '0 0 20px' }}>Mission</h3>
                 <p style={{ fontFamily: "'DM Sans',sans-serif", fontSize: 15, lineHeight: 1.68, color: '#A6A2C2', margin: '0 0 16px' }}>Kaysa specializes in crypto marketing with one clear goal: to connect verified projects with influential creators who make a genuine impact.</p>
                 <p style={{ fontFamily: "'DM Sans',sans-serif", fontSize: 15, lineHeight: 1.68, color: '#A6A2C2', margin: '0 0 16px' }}>Every project we represent undergoes a thorough vetting process — from tokenomics to team background — before being introduced to our influencer network.</p>
                 <p style={{ fontFamily: "'DM Sans',sans-serif", fontSize: 15, lineHeight: 1.68, color: '#A6A2C2', margin: 0 }}>We apply the same standards to our influencers. Only those who truly understand their audience, communicate authentically, and share our values are invited to join.</p>
@@ -73,7 +73,7 @@ export default function AboutPage() {
                 whileHover={{ y: -4 }}
                 style={{ padding: 38, borderRadius: 24, border: '1px solid rgba(142,134,242,0.24)', background: 'linear-gradient(160deg,rgba(107,99,216,0.18),rgba(30,26,64,0.3))', display: 'flex', flexDirection: 'column', justifyContent: 'center', height: '100%' }}
               >
-                <h3 style={{ fontFamily: "'Sora',sans-serif", fontWeight: 700, fontSize: 26, color: '#F4F2FC', margin: '0 0 20px' }}>Vision</h3>
+                <h3 style={{ fontFamily: "'Sora',sans-serif", fontWeight: 400, fontSize: 26, color: '#F4F2FC', margin: '0 0 20px' }}>Vision</h3>
                 <p style={{ fontFamily: "'DM Sans',sans-serif", fontSize: 17, lineHeight: 1.7, color: '#D9D5EE', margin: 0 }}>Our vision is to be the trusted global partner for innovation and growth, where strategy meets creativity and every collaboration retains a personal, human touch.</p>
               </motion.div>
             </StaggerItem>
@@ -136,7 +136,7 @@ export default function AboutPage() {
               style={{ position: 'relative', overflow: 'hidden', borderRadius: 28, border: '1px solid rgba(142,134,242,0.24)', padding: 'clamp(40px,6vw,64px)', textAlign: 'center', background: 'linear-gradient(135deg,rgba(107,99,216,0.20),rgba(40,34,80,0.30))' }}
             >
               <div style={{ position: 'absolute', inset: 0, opacity: 0.5, background: 'radial-gradient(60% 120% at 50% 0%, rgba(169,159,255,0.25), transparent 70%)', pointerEvents: 'none' }} />
-              <h2 style={{ position: 'relative', fontFamily: "'Sora',sans-serif", fontWeight: 700, fontSize: 'clamp(24px,3.4vw,40px)', lineHeight: 1.1, margin: '0 auto 24px', maxWidth: 640, color: '#F4F2FC' }}>Ready to build something credible?</h2>
+              <h2 style={{ position: 'relative', fontFamily: "'Sora',sans-serif", fontWeight: 400, fontSize: 'clamp(28px,3.8vw,48px)', lineHeight: 1.07, letterSpacing: '-0.02em', margin: '0 auto 24px', maxWidth: 640, color: '#F4F2FC' }}>Ready to build something credible?</h2>
               <Link href="/contact">
                 <motion.span
                   className="btn-primary"
