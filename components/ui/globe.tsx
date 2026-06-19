@@ -205,10 +205,18 @@ export function World(props: WorldProps) {
       }}
     >
       <WebGLRendererConfig />
-      <ambientLight color={globeConfig.ambientLight ?? "#6B63D8"} intensity={0.6} />
-      <directionalLight color={globeConfig.directionalLeftLight ?? "#A99FFF"} position={new Vector3(-400, 100, 400)} />
-      <directionalLight color={globeConfig.directionalTopLight ?? "#ffffff"} position={new Vector3(-200, 500, 200)} />
-      <pointLight color={globeConfig.pointLight ?? "#8E86F2"} position={new Vector3(-200, 500, 200)} intensity={0.8} />
+      <ambientLight color="#ffffff" intensity={2.2} />
+      <directionalLight color="#A99FFF" position={new Vector3(-400, 100, 400)} intensity={2.5} />
+      <directionalLight color="#ffffff" position={new Vector3(-200, 500, 200)} intensity={2.2} />
+      <directionalLight color="#C8C0FF" position={new Vector3(400, -200, 300)} intensity={1.8} />
+      <directionalLight color="#D4C8FF" position={new Vector3(200, 400, -300)} intensity={1.6} />
+      <directionalLight color="#ffffff" position={new Vector3(0, -500, 400)} intensity={1.5} />
+      <pointLight color="#8E86F2" position={new Vector3(-200, 500, 200)} intensity={2.5} />
+      <pointLight color="#50C3FF" position={new Vector3(400, 200, 100)} intensity={2.2} />
+      <pointLight color="#C96FE8" position={new Vector3(0, -400, 200)} intensity={1.8} />
+      <pointLight color="#ffffff" position={new Vector3(0, 0, 500)} intensity={1.8} />
+      <pointLight color="#A99FFF" position={new Vector3(300, -300, 400)} intensity={1.5} />
+      <pointLight color="#ffffff" position={new Vector3(-300, 300, 400)} intensity={1.5} />
       <Globe {...props} />
       <OrbitControls
         enablePan={false}

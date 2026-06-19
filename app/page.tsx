@@ -158,7 +158,7 @@ export default function HomePage() {
                   <h1 style={{
                     fontFamily: "'Sora',sans-serif",
                     fontWeight: i === 1 ? 400 : 300,
-                    fontSize: 'clamp(32px,4.4vw,68px)',
+                    fontSize: 'clamp(29px,4.4vw,68px)',
                     whiteSpace: 'nowrap',
                     lineHeight: 1.08,
                     letterSpacing: '-0.03em',
