@@ -7,16 +7,35 @@ const MATH_A = 13, MATH_B = 7;
 
 export default function ContactPage() {
   const [sent, setSent] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const [name, setName] = useState('');
+  const [email, setEmail] = useState('');
+  const [message, setMessage] = useState('');
   const [mathAnswer, setMathAnswer] = useState('');
   const [mathError, setMathError] = useState(false);
+  const [error, setError] = useState('');
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (parseInt(mathAnswer) !== MATH_A + MATH_B) {
       setMathError(true);
       return;
     }
-    setSent(true);
+    setLoading(true);
+    setError('');
+    try {
+      const res = await fetch('/api/contact', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ name, email, message }),
+      });
+      if (!res.ok) throw new Error('Failed');
+      setSent(true);
+    } catch {
+      setError('Something went wrong. Please try again.');
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
@@ -54,15 +73,15 @@ export default function ContactPage() {
                 <form onSubmit={handleSubmit}>
                   <div style={{ marginBottom: 20 }}>
                     <label style={{ display: 'block', fontFamily: "'JetBrains Mono',monospace", fontSize: 11, letterSpacing: '0.18em', textTransform: 'uppercase', color: '#8A86AC', marginBottom: 9 }}>Name</label>
-                    <input type="text" required placeholder="Your name" className="input-field" />
+                    <input type="text" required placeholder="Your name" className="input-field" value={name} onChange={e => setName(e.target.value)} />
                   </div>
                   <div style={{ marginBottom: 20 }}>
                     <label style={{ display: 'block', fontFamily: "'JetBrains Mono',monospace", fontSize: 11, letterSpacing: '0.18em', textTransform: 'uppercase', color: '#8A86AC', marginBottom: 9 }}>Email Address</label>
-                    <input type="email" required placeholder="you@company.com" className="input-field" />
+                    <input type="email" required placeholder="you@company.com" className="input-field" value={email} onChange={e => setEmail(e.target.value)} />
                   </div>
                   <div style={{ marginBottom: 20 }}>
                     <label style={{ display: 'block', fontFamily: "'JetBrains Mono',monospace", fontSize: 11, letterSpacing: '0.18em', textTransform: 'uppercase', color: '#8A86AC', marginBottom: 9 }}>Message</label>
-                    <textarea required rows={5} placeholder="Tell us about your project..." className="input-field" style={{ resize: 'vertical' }} />
+                    <textarea required rows={5} placeholder="Tell us about your project..." className="input-field" style={{ resize: 'vertical' }} value={message} onChange={e => setMessage(e.target.value)} />
                   </div>
                   <div style={{ marginBottom: 24 }}>
                     <label style={{ display: 'block', fontFamily: "'JetBrains Mono',monospace", fontSize: 11, letterSpacing: '0.18em', textTransform: 'uppercase', color: '#8A86AC', marginBottom: 9 }}>
@@ -78,8 +97,9 @@ export default function ContactPage() {
                     />
                     {mathError && <p style={{ fontFamily: "'DM Sans',sans-serif", fontSize: 13, color: '#FF7070', margin: '6px 0 0' }}>Incorrect answer, please try again.</p>}
                   </div>
-                  <button type="submit" className="btn-primary" style={{ width: '100%', fontSize: 15.5, fontWeight: 600, padding: 16, borderRadius: 13 }}>
-                    Submit →
+                  {error && <p style={{ fontFamily: "'DM Sans',sans-serif", fontSize: 13, color: '#FF7070', margin: '0 0 12px' }}>{error}</p>}
+                  <button type="submit" disabled={loading} className="btn-primary" style={{ width: '100%', fontSize: 15.5, fontWeight: 600, padding: 16, borderRadius: 13, opacity: loading ? 0.7 : 1 }}>
+                    {loading ? 'Sending…' : 'Submit →'}
                   </button>
                 </form>
               )}

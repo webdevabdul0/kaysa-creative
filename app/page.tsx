@@ -366,36 +366,7 @@ export default function HomePage() {
           </section>
         </FadeUp>
 
-        {/* ── TESTIMONIALS ── */}
-        <section style={{ padding: 'clamp(140px,16vh,200px) 0 0' }}>
-          <FadeUp>
-            <div style={{ maxWidth: 1240, margin: '0 auto', padding: '0 clamp(20px,5vw,48px)', textAlign: 'center', marginBottom: 48 }}>
-              <div style={{ display: 'inline-flex', alignItems: 'center', gap: 11, marginBottom: 18 }}>
-                <span style={{ width: 7, height: 7, borderRadius: 2, background: '#8E86F2', boxShadow: '0 0 12px #6B63D8' }} />
-                <span style={{ fontFamily: "'JetBrains Mono',monospace", fontSize: 12, letterSpacing: '0.26em', textTransform: 'uppercase', color: '#8E86F2' }}>Testimonials</span>
-              </div>
-              <h2 style={{ fontFamily: "'Sora',sans-serif", fontWeight: 400, fontSize: 'clamp(28px,3.8vw,48px)', lineHeight: 1.08, letterSpacing: '-0.02em', margin: 0, color: '#F1EFFA' }}>Trust, in their words.</h2>
-            </div>
-          </FadeUp>
-          <div style={{ position: 'relative', overflow: 'hidden', WebkitMaskImage: 'linear-gradient(90deg,transparent,#000 7%,#000 93%,transparent)', maskImage: 'linear-gradient(90deg,transparent,#000 7%,#000 93%,transparent)', display: 'flex', flexDirection: 'column', gap: 20 }}>
-            {[{ dir: 'marquee-l', grad: 'linear-gradient(135deg,#A99FFF,#6B63D8)' }, { dir: 'marquee-r', grad: 'linear-gradient(135deg,#6B63D8,#4A3F9E)' }].map(({ dir, grad }, ri) => (
-              <div key={ri} className={dir} style={{ display: 'flex', gap: 20, width: 'max-content' }}>
-                {testimonialsDbl.map((t, i) => (
-                  <div key={i} style={{ flex: 'none', width: 'min(420px,82vw)', padding: 30, borderRadius: 20, border: '1px solid rgba(142,134,242,0.14)', background: 'linear-gradient(180deg,rgba(255,255,255,0.04),rgba(255,255,255,0.012))' }}>
-                    <p style={{ fontFamily: "'DM Sans',sans-serif", fontSize: 15, lineHeight: 1.65, color: '#CFCBE4', margin: '0 0 22px' }}>&ldquo;{t.quote}&rdquo;</p>
-                    <div style={{ display: 'flex', alignItems: 'center', gap: 13 }}>
-                      <div style={{ width: 42, height: 42, borderRadius: '50%', flex: 'none', background: grad, display: 'flex', alignItems: 'center', justifyContent: 'center', fontFamily: "'Sora',sans-serif", fontWeight: 500, fontSize: 16, color: '#fff' }}>{t.initial}</div>
-                      <div>
-                        <div style={{ fontFamily: "'Sora',sans-serif", fontWeight: 500, fontSize: 15, color: '#F1EFFA' }}>{t.author}</div>
-                        <div style={{ fontFamily: "'JetBrains Mono',monospace", fontSize: 11.5, letterSpacing: '0.06em', color: '#8A86AC' }}>{t.title}</div>
-                      </div>
-                    </div>
-                  </div>
-                ))}
-              </div>
-            ))}
-          </div>
-        </section>
+        {/* ── TESTIMONIALS — hidden ── */}
 
         {/* ── FEATURED PROJECT — MOONPOT ── */}
         <section style={{ maxWidth: 1240, margin: '0 auto', padding: 'clamp(140px,16vh,200px) clamp(20px,5vw,48px) 0' }}>
